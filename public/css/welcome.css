@@ -13,6 +13,10 @@ html, body {
     justify-content: flex-end;
 }
 
+.ma-5 {
+    margin: 0px 15px;
+
+}
 .full-height {
     height: 100vh;
 }

@@ -9,8 +9,8 @@
 
 import Buefy from 'buefy'
 
-require('../../public/js/animatedModal.js');
-require('../../public/js/animatedModalScripts.js')
+// require('../../public/js/animatedModal.js');
+// require('../../public/js/animatedModalScripts.js');
 
 window.Vue = require('vue');
 
@@ -24,6 +24,15 @@ window.Vue = require('vue');
 Vue.use(Buefy)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('footer-component', require('./components/main/FooterComponent.vue'));
+Vue.component('navbar-component', require('./components/main/NavbarComponent.vue'));
+Vue.component('hero-component', require('./components/main/HeroComponent.vue'));
+Vue.component('main-component', require('./components/main/MainComponent.vue'));
+Vue.component('administration-component', require('./components/main/AdministrationComponent.vue'));
+Vue.component('target-component', require('./components/main/TargetComponent.vue'));
+Vue.component('up-side-component', require('./components/main/UpSideComponent.vue'));
+Vue.component('feed-component', require('./components/main/FeedComponent.vue'));
+Vue.component('feed-message-component', require('./components/main/FeedMessageComponent.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 

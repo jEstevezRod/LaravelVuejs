@@ -5,7 +5,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+
+
+import Buefy from 'buefy'
+
+require('../../public/js/animatedModal.js');
+require('../../public/js/animatedModalScripts.js')
 
 window.Vue = require('vue');
 
@@ -16,6 +21,7 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+Vue.use(Buefy)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 

@@ -24694,7 +24694,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24742,14 +24742,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "NavbarComponent",
-    methods: {
-        logout: function logout() {
-            axios.post('/api/logout').then(function (response) {}).catch(function (response) {});
-        }
-    }
+    name: "NavbarComponent"
 });
 
 /***/ }),
@@ -24771,6 +24767,8 @@ var render = function() {
               _vm._m(1),
               _vm._v(" "),
               _c("span", { staticClass: "navbar-item" }, [
+                _c("p"),
+                _vm._v(" "),
                 _c(
                   "a",
                   {

@@ -39,15 +39,6 @@
 <script>
     export default {
         name: "NavbarComponent",
-        methods: {
-            logout() {
-                axios.post('/api/logout').then(function (response) {
-
-                }).catch(function (response) {
-
-                })
-            }
-        }
     }
 </script>
 

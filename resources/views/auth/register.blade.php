@@ -14,12 +14,12 @@
                                 <div class="control has-icons-left has-icons-right">
                                     <input id="name" name="name"
                                            class="input is-default form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                           type="text" placeholder="Text input">
+                                           type="text" placeholder="John Doe">
                                     <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong class="has-text-danger">{{ $errors->first('name') }}</strong>
+                                        <p class="has-text-danger">{{ $errors->first('name') }}</p>
                                     </span>
                                 @endif
                             </div>
@@ -29,12 +29,12 @@
                                 <div class="control has-icons-left has-icons-right">
                                     <input id="email" name="email"
                                            class="input is-default form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                           type="email" placeholder="Email input">
+                                           type="email" placeholder="johndoe@example.com">
                                     <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
                                 </div>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong class="has-text-danger">{{ $errors->first('email') }}</strong>
+                                        <p class="has-text-danger">{{ $errors->first('email') }}</p>
                                     </span>
                                 @endif
                             </div>
@@ -47,7 +47,7 @@
                                     </span>
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong class="has-text-danger">{{ $errors->first('password') }}</strong>
+                                        <p class="has-text-danger">{{ $errors->first('password') }}</p>
                                     </span>
                                     @endif
                                 </div>
@@ -67,7 +67,7 @@
                                 <div class="control">
                                     <label class="checkbox">
                                         <input type="checkbox" required>
-                                        I agree to the <a href="#">terms and conditions</a>
+                                        I agree to the <a href="http://jestevezrod.es" target="_blank">terms and conditions</a>
                                     </label>
                                 </div>
                             </div>
@@ -83,5 +83,7 @@
         </div>
     </div>
     </div>
+</div>
     </div>
 @endsection
+

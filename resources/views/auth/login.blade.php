@@ -21,7 +21,7 @@
                                     </span>
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">
-                                        <strong class="has-text-danger">{{ $errors->first('email') }}</strong>
+                                        <p class="has-text-danger">{{ $errors->first('email') }}</p>
                                     </span>
                                         @endif
                                     </div>
@@ -39,7 +39,7 @@
                                     </div>
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong class="has-text-danger">{{ $errors->first('password') }}</strong>
+                                        <p class="has-text-danger">{{ $errors->first('password') }}</p>
                                     </span>
                                     @endif
                                 </div>
@@ -58,7 +58,7 @@
                                 <div class="field">
 
 
-                                    <div class="control is-flex-tablet jc-right">
+                                    <div class="control is-flex">
                                         <button style="margin: 0px 10px;" class="button is-dark ma-5"><a
                                                     class="has-text-white" href="login/github">
                                                 <span class="icon">
@@ -66,8 +66,8 @@
                                                 </span>
                                                 <span>Login with GitHub</span></a></button>
 
-                                        <button style="margin: 0px 10px;" class="button is-link"><a type="submit"
-                                                                                                    class="has-text-white "><span class="icon"><i class="fas fa-sign-in-alt"></i></span><span>Login</span></a>
+                                        <button style="margin: 0px 10px;" class="button is-link is-pulled-right"><a type="submit"
+                                            class="has-text-white "><span class="icon"><i class="fas fa-sign-in-alt"></i></span><span>Login</span></a>
                                         </button>
                                     </div>
                                 </div>

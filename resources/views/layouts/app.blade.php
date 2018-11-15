@@ -44,10 +44,12 @@
 
 
                         <!-- Authentication Links -->
-                        @guest
-                                <a class="button is-light" href="{{ route('login') }}">{{ __('Login') }}</a>
-
-                                @if (Route::has('register'))
+                        @guest  
+                                @if (\Request::is('register'))
+                                    <a class="button is-light" href="{{ route('login') }}">{{ __('Sign in') }}</a>
+                                @endif
+                                
+                                @if (\Request::is('login'))
                                     <a class="button is-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 @endif
                         @else

@@ -23,7 +23,7 @@
                                 <li><a href="">Mensajes</a></li>
                             </ul>
                             <span class="navbar-item">
-                                        <a class="button is-white is-outlined">
+                                        <a class="button is-white is-outlined" href="/logout">
                                             <span @click.prevent="logout">Logout</span>
                                         </a>
                             </span>

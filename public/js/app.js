@@ -24694,7 +24694,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -24705,9 +24705,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -24774,23 +24771,27 @@ var render = function() {
               _vm._m(1),
               _vm._v(" "),
               _c("span", { staticClass: "navbar-item" }, [
-                _c("a", { staticClass: "button is-white is-outlined" }, [
-                  _c(
-                    "span",
-                    {
-                      attrs: { title: "Hello from the other side" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.logout($event)
+                _c(
+                  "a",
+                  {
+                    staticClass: "button is-white is-outlined",
+                    attrs: { href: "/logout" }
+                  },
+                  [
+                    _c(
+                      "span",
+                      {
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.logout($event)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("Logout")]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ])
+                      },
+                      [_vm._v("Logout")]
+                    )
+                  ]
+                )
               ])
             ])
           ])
@@ -24833,17 +24834,6 @@ var staticRenderFns = [
       _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Notas")])]),
       _vm._v(" "),
       _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Mensajes")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "icon" }, [
-      _c("i", {
-        staticClass: "fa fa-user-circle-o",
-        attrs: { "aria-hidden": "true" }
-      })
     ])
   }
 ]

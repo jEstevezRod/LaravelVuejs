@@ -7,7 +7,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Vue is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
 
-### 1. Explicación de la idea del proyecto.
+### - Explicación de la idea del proyecto.
 
 Debido que hasta ahora no me he encontrado trabajando en equipo, no me habia dado cuenta
 de lo importante que es realmente un buen sistema de versión de controles y no solo eso, hace
@@ -19,13 +19,7 @@ una eficiencia en el trabajo.
 
 ---
 
-### 2. Diagrama E/R de la Base de Datos.
-
-<p align="center"><img src="https://i.imgur.com/HJQqZhZ.png"></p>
-
----
-
-### 3. Tecnologías utilizadas para el desarrollo.
+### - Tecnologías utilizadas para el desarrollo.
 
 El proyecto estará formado por un front-end elaborado con el framework de Vue js haciendo
 servicio a un back-end servido por Laravel. Por parte de Vuejs se usará Vue Router como
@@ -47,7 +41,7 @@ una versión o formato más generalizado.
 
 ---
 
-### 4. Alcance completo del proyecto.
+### - Alcance completo del proyecto.
 
 La página root será donde podrás loguearte o registrarte mediante un modal, esta página será
 la única que podrán ver los usuarios anónimos junto con la page not found 404.

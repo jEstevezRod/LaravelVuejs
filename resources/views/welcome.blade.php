@@ -7,7 +7,7 @@
             <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Joy Nuts !</title>
+        <title>Taskland !</title>
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
@@ -27,7 +27,7 @@
             <!-- Left side -->
             <div class="level-left">
                 <div class="level-item">
-                    <img src="{{ asset('images/favicon.png') }}" width="60px" height="40px">
+                    <img src="{{ asset('images/aa.png') }}" width="60px" height="40px">
                 </div>
 
             </div>
@@ -48,21 +48,28 @@
             <div class="columns is-vcentered full-height">
                 <div class="column has-text-centered is-6">
                     <div class="animated fadeInDown">
-                        <p class="is-size-1 is-size-3-mobile title">Joy Nuts</p>
+                        <p class="is-size-1 is-size-3-mobile title">Taskland</p>
                         <p class="m-5">Your team needs a better way to stay organized</p>
-                        <div class="field is-grouped is-grouped-centered m-5">
-                            <p class="control">
-                                <a class="button is-medium is-danger is-outlined" href="{{ route('login') }}">
-                                    LOGIN
-                                </a>
-                            </p>
+                        @guest
+                            <div class="field is-grouped is-grouped-centered m-5">
+                                <p class="control">
+                                    <a class="button is-medium is-danger is-outlined" href="{{ route('login') }}">
+                                        LOGIN
+                                    </a>
+                                </p>
 
-                            <p class="control">
-                                <a class="button is-medium is-info is-outlined" href="{{ route('register') }}">
-                                    REGISTER
-                                </a>
-                            </p>
-                        </div>
+                                <p class="control">
+                                    <a class="button is-medium is-info is-outlined" href="{{ route('register') }}">
+                                        REGISTER
+                                    </a>
+                                </p>
+                            </div>
+                            @else
+
+                            <button class="button is-medium is-dark is-outlined" href="{{ route('home') }}">
+                                Go home !
+                            </button>
+                        @endguest
                     </div>
                 </div>
                 <div class="column is-6">

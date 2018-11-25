@@ -5,12 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-
-
 import Buefy from 'buefy'
-
-// require('../../public/js/animatedModal.js');
-// require('../../public/js/animatedModalScripts.js');
 
 window.Vue = require('vue');
 
@@ -21,9 +16,9 @@ window.Vue = require('vue');
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-Vue.use(Buefy)
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.use(Buefy);
+
 Vue.component('footer-component', require('./components/main/FooterComponent.vue'));
 Vue.component('navbar-component', require('./components/main/NavbarComponent.vue'));
 Vue.component('hero-component', require('./components/main/HeroComponent.vue'));

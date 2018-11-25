@@ -25245,12 +25245,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "AdministrationComponent"
+
+    name: "AdministrationComponent",
+    data: {
+        items: [{ id: 1, title: 'Dashboard' }, { id: 2, title: 'Calendar' }, { id: 3, title: 'Notes' }, { id: 3, title: 'Messages' }]
+    }
 });
 
 /***/ }),
@@ -25265,16 +25266,9 @@ var render = function() {
     _c(
       "div",
       { staticClass: "columns features" },
-      [
-        _c("target-component"),
-        _vm._v(" "),
-        _c("target-component"),
-        _vm._v(" "),
-        _c("target-component"),
-        _vm._v(" "),
-        _c("target-component")
-      ],
-      1
+      _vm._l(_vm.items, function(item) {
+        return _c("target-component")
+      })
     )
   ])
 }
@@ -25408,6 +25402,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "TargetComponent",
+    props: ['item'],
     data: {
         image_src: '../../../public/images/home.png'
     }
@@ -25445,9 +25440,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "card-content" }, [
             _c("div", { staticClass: "content" }, [
-              _c("h4", { staticClass: "has-text-centered" }, [
-                _vm._v("Dashboard")
-              ]),
+              _c("h4", { staticClass: "has-text-centered" }, [_vm._v(" ds ")]),
               _vm._v(" "),
               _c("p", [
                 _vm._v(

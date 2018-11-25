@@ -64,11 +64,21 @@
                                     </a>
                                 </p>
                             </div>
-                            @else
+                        @else
+                            <h2 class="m-5">Hi {{ Auth::user()->name }} !</h2>
+                            <div class="field is-grouped is-grouped-centered m-5">
+                                <p class="control">
+                                    <a class="button is-medium is-dark is-outlined" href="{{ route('home') }}">
+                                        Go home
+                                    </a>
+                                </p>
 
-                            <button class="button is-medium is-dark is-outlined" href="{{ route('home') }}">
-                                Go home !
-                            </button>
+                                <p class="control">
+                                    <a class="button is-medium is-danger is-outlined" href="{{ route('logout') }}">
+                                        Logout
+                                    </a>
+                                </p>
+                            </div>
                         @endguest
                     </div>
                 </div>

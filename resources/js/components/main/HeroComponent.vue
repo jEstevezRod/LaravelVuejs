@@ -2,7 +2,7 @@
     <div class="hero-body">
         <div class="container has-text-centered ">
             <h1 class="title tomato">
-                <span class="has-text-dark">Joy Nuts</span>
+                <span class="has-text-dark title">Taskland</span>
             </h1>
             <h2 class="subtitle dark-text"><span class="dark-text">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
@@ -21,9 +21,7 @@
     .hero-body .container {
         max-width: 700px;
     }
-    .hero-body .title {
-        color: hsl(192,17%,99%) !important;
-    }
+
     .hero-body .subtitle {
         color: hsl(192,17%,99%) !important;
         padding-top: 2rem;
@@ -40,5 +38,10 @@
     .subtitle {
         color: #333333 !important;
 
+    }
+    .title {
+        font-family: 'Waiting for the Sunrise', cursive;
+        font-size: 110px !important;
+        color: #333333 !important;
     }
 </style>

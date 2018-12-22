@@ -12,10 +12,6 @@
 </script>
 
 <style scoped>
-
-
-
-
     .header-image {
         background-image: url("../../../../public/images/cortada.jpg");
         background-position: center center;
@@ -23,9 +19,6 @@
         background-attachment: fixed;
         background-size: cover;
         background-color: #999;
-
     }
-
-
 
 </style>

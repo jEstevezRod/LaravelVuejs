@@ -22,23 +22,17 @@
     </head>
     <body>
     <div class="container is-fluid">
-
         <nav class="level">
             <!-- Left side -->
             <div class="level-left">
                 <div class="level-item">
                     <img src="{{ asset('images/aa.png') }}" width="60px" height="40px">
                 </div>
-
             </div>
-
             <!-- Right side -->
             <div class="level-right">
-
             </div>
         </nav>
-
-
         <div id="flow">
             <span class="flow-1"></span>
             <span class="flow-2"></span>

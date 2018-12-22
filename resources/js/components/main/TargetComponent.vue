@@ -3,14 +3,13 @@
     <div class="column is-3 is-flex has-cursor-pointer">
         <div class="card is-shady">
             <div class="card-image has-text-centered">
-                <img src="../../../../public/images/home.png" class="has-margin5" alt="">
+                <img :src="item.image" class="has-margin5 image-target" alt="">
             </div>
             <div class="card-content">
                 <div class="content">
-                    <h4 class="has-text-centered">Dashboard</h4>
-                    <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer
-                        enim neque.</p>
-                    <p class="has-text-centered"><a href="#" class="button is-danger">Ir a Dashboard</a></p>
+                    <h4 class="has-text-centered"> {{ item.title }} </h4>
+                    <p>{{ item.description}}</p>
+                    <p class="has-text-centered"><a href="#" class="button is-danger">Ir a {{ item.title }}</a></p>
                 </div>
             </div>
         </div>
@@ -21,8 +20,16 @@
 <script>
     export default {
         name: "TargetComponent",
-        data: {
-            image_src: '../../../public/images/home.png',
+        props: {
+            item: {
+                type: Object,
+                required: true
+            }
+        },
+        data() {
+            return {
+                image_src: '../../../public/images/home.png',
+            }
         }
     }
 </script>
@@ -31,5 +38,8 @@
     .has-margin5 {
         margin: 45px 30px 20px 30px;
     }
-
+    .image-target {
+        width: 150px;
+        height: 150px;
+    }
 </style>

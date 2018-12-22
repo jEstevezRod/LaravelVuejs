@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Joy Nuts') }}</title>
+    <title>{{ config('app.name', 'Taskland !') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -27,7 +27,7 @@
 
                 <div class="level-item">
                 <a style="font-family: 'Waiting for the Sunrise', cursive;font-size: 26px;margin: 0px 15px;" href="{{ url('/') }}">
-                    <strong class="has-text-white">Joy Nuts</strong>
+                    <strong class="has-text-white">Taskland</strong>
                 </a>
                 </div>
                 <a class="navbar-burger burger" role="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="../">
-                        <p class="title-navbar" >Joy Nuts</p>
+                        <p class="title-navbar" >Taskland </p>
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenu">
                                 <span></span>

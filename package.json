@@ -19,6 +19,7 @@
     "vue": "^2.5.17"
   },
   "dependencies": {
-    "buefy": "^0.7.0"
+    "buefy": "^0.7.0",
+    "vue-router": "^3.0.2"
   }
 }

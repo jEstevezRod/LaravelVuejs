@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
     <title>{{ config('app.name', 'Taskland !') }}</title>
 
     <!-- Scripts -->
@@ -24,7 +25,10 @@
 </head>
 <body>
     <div id="app">
-        <main-component></main-component>
+        <navbar-component></navbar-component>
+        {{--<main-component></main-component>--}}
+        <router-view></router-view>
+        <footer-component></footer-component>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>

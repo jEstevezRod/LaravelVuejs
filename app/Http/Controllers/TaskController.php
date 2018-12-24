@@ -36,11 +36,13 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $task = new Task();
-        $task->author = $request->author;
-        $task->teamwork = $request->teamwork;
-        $task->subject = $request->subject;
-        $task->description = $request->description;
+        $task->author = $request->author ? $request->author : 'test' ;
+        $task->teamwork = $request->teamwork ? $request->author : 'test';
+        $task->subject = $request->subject ? $request->author : 'test';
+        $task->description = $request->description ? $request->author : 'test';
         $task->save();
+
+        return redirect('home#/dashboard');;
     }
 
     /**

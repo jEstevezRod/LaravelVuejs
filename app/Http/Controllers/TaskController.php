@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -14,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -31,18 +32,19 @@ class TaskController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
     public function store(Request $request)
     {
         $task = new Task();
-        $task->author = $request->author ? $request->author : 'test' ;
-        $task->teamwork = $request->teamwork ? $request->teamwork : 'test';
-        $task->subject = $request->subject ? $request->subject : 'test';
-        $task->description = $request->description ? $request->description : 'test';
+        $task->author = Auth::user()->getId() ? Auth::user()->getId() : 1;
+        $task->teamwork = $request->teamwork ? $request->teamwork : null;
+        $task->subject = $request->subject ? $request->subject : 'subject default';
+        $task->description = $request->description ? $request->description : 'desc default';
         $task->save();
 
-        return [ 'message' => $request];
+//        return redirect('home#/dashboard');
+        return [ 'message' => 'Task created correctly!'];
     }
 
     /**

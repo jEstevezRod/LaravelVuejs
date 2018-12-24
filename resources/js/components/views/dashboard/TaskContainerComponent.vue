@@ -7,7 +7,7 @@
                 <div class="columns">
                     <div class="column sidebar">
                         <div class="teams-wrapper">
-                            <h4>TEAMS:</h4>
+                            <p class="subtitle">TEAMS:</p>
                             <ul>
                                 <li>team 1</li>
                                 <li>team 2</li>
@@ -15,7 +15,7 @@
                             </ul>
                         </div>
                         <div class="projects-wrapper">
-                            <h4>PROJECTS</h4>
+                            <p class="subtitle">PROJECTS</p>
                             <ul>
                                 <li>project 1</li>
                                 <li>project 2</li>
@@ -23,12 +23,15 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="column">
+                    <div class="column box">
+                        <p class="subtitle">Tasks</p>
                         <form action="/tasks" method="post" @submit.prevent="onSubmit">
                             <input type="hidden" name="_token" :value="csrf">
-                            <input type="text" name="author" id="author" v-model="author">
+                            <label for="teamwork">Your team: </label>
                             <input type="text" name="teamwork" id="teamwork" v-model="teamwork">
+                            <label for="subject">Your title is: </label>
                             <input type="text" name="subject" id="subject" v-model="subject">
+                            <label for="description">Your description is: </label>
                             <input type="text" name="description" id="description" v-model="description">
                             <button type="submit">Add task</button>
                         </form>
@@ -66,23 +69,24 @@
         name: "TaskContainer",
         data: () => ({
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            author: '',
             teamwork: '',
             subject: '',
             description: ''
         }),
         methods: {
+
             onSubmit() {
                 this.$axios.post('/tasks', {
-                    author : this.author,
                     teamwork : this.teamwork,
                     subject: this.subject,
                     description: this.description
-                }).then(
-                    console.log("done")
-                ).catch(
-                    console.log("bad request")
-                )
+                })
+                    .then(this.onSuccess)
+                    .catch()
+            },
+
+            onSuccess(response) {
+                alert(response.data.message)
             }
         }
 

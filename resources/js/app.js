@@ -1,10 +1,12 @@
+import Vue from 'vue'
 import Buefy from 'buefy'
 import Router from './routes'
+import axios from 'axios'
 
 window.Vue = require('vue');
-Vue.use(Buefy);
+Vue.use(Buefy, axios);
 
-// import TaskContainerComponent from 'components/views/dashboard/TaskContainerComponent';
+Vue.prototype.$axios = axios;
 
 //MAIN AND SHARED
 Vue.component('footer-component', require('./components/shared/FooterComponent.vue'));

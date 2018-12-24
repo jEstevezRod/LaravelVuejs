@@ -37,12 +37,12 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task->author = $request->author ? $request->author : 'test' ;
-        $task->teamwork = $request->teamwork ? $request->author : 'test';
-        $task->subject = $request->subject ? $request->author : 'test';
-        $task->description = $request->description ? $request->author : 'test';
+        $task->teamwork = $request->teamwork ? $request->teamwork : 'test';
+        $task->subject = $request->subject ? $request->subject : 'test';
+        $task->description = $request->description ? $request->description : 'test';
         $task->save();
 
-        return redirect('home#/dashboard');;
+        return [ 'message' => $request];
     }
 
     /**

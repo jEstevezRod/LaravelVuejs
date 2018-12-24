@@ -15,8 +15,8 @@ class AddTaskTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('author');
-            $table->string('teamwork');
+            $table->unsignedInteger('author')->nullable();
+            $table->unsignedInteger('teamwork')->nullable();
             $table->string('subject');
             $table->string('description');
             $table->timestamps();
@@ -30,7 +30,7 @@ class AddTaskTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task');
+        Schema::dropIfExists('tasks');
 
     }
 }

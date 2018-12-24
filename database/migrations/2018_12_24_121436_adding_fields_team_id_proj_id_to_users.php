@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjectsTable extends Migration
+class AddingFieldsTeamIdProjIdToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('p_name');
+        Schema::table('users', function($table) {
             $table->unsignedInteger('team_id')->nullable();
-            $table->timestamps();
+            $table->unsignedInteger('project_id')->nullable();
         });
     }
 
@@ -28,6 +26,11 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::table('users', function($table) {
+            $table->dropColumn('team_id');
+        });
+        Schema::table('users', function($table) {
+            $table->dropColumn('project_id');
+    });
     }
 }

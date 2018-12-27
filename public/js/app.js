@@ -24998,7 +24998,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: [{
-        path: '/',
+        path: '/home',
         component: __WEBPACK_IMPORTED_MODULE_3__components_views_home_HomeViewComponent_vue___default.a
     }, {
         path: '/dashboard',
@@ -27778,6 +27778,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "TaskContainer",
@@ -27786,9 +27791,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             teamwork: '',
             subject: '',
-            description: ''
+            description: '',
+            state: 'queue',
+            tasks_list: []
         };
     },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$axios.get('/tasks').then(function (response) {
+            return _this.tasks_list = response.data.tasks;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
+    },
+
     methods: {
         onSubmit: function onSubmit() {
             this.$axios.post('/tasks', {
@@ -27799,6 +27816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onSuccess: function onSuccess(response) {
             alert(response.data.message);
+            this.tasks_list.push(response.data.task);
         }
     }
 
@@ -27921,6 +27939,31 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
+                _c("label", { attrs: { for: "state" } }, [
+                  _vm._v("Your task state is: ")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.state,
+                      expression: "state"
+                    }
+                  ],
+                  attrs: { type: "text", name: "state", id: "state" },
+                  domProps: { value: _vm.state },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.state = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
                 _c("button", { attrs: { type: "submit" } }, [
                   _vm._v("Add task")
                 ])
@@ -27930,7 +27973,29 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _c("div", { staticClass: "column is-9 task-wrapper" }, [
+        _c("div", { staticClass: "columns is-variable is-2-mobile" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "column task-state has-text-centered" },
+            [
+              _vm._v(" IN PROGRESS\n                    "),
+              _c("hr"),
+              _vm._v(" "),
+              _vm._l(_vm.tasks_list, function(task) {
+                return _c("div", { staticClass: "box" }, [
+                  _vm._v(_vm._s(task.subject))
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _vm._m(2)
+        ])
+      ])
     ])
   ])
 }
@@ -27969,41 +28034,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column is-9 task-wrapper" }, [
-      _c("div", { staticClass: "columns is-variable is-2-mobile" }, [
-        _c("div", { staticClass: "column task-state has-text-centered" }, [
-          _vm._v(" QUEUE\n                    "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "column task-state has-text-centered" }, [
-          _vm._v(" IN PROGRESS\n                    "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "column task-state has-text-centered" }, [
-          _vm._v("FINISHED\n                    "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")])
-        ])
-      ])
+    return _c("div", { staticClass: "column task-state has-text-centered" }, [
+      _vm._v(" QUEUE\n                    "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column task-state has-text-centered" }, [
+      _vm._v("FINISHED\n                    "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")])
     ])
   }
 ]
@@ -29534,7 +29590,7 @@ var render = function() {
                           "li",
                           { staticClass: "is-active" },
                           [
-                            _c("router-link", { attrs: { to: "/" } }, [
+                            _c("router-link", { attrs: { to: "/home" } }, [
                               _vm._v("Home")
                             ])
                           ],

@@ -15,12 +15,11 @@ Route::get('/', function () {return view('welcome');});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/web', 'HomeController@index')->name('home');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-//Route::resource('tasks', 'TaskController');
 
 Route::post('tasks', '\App\Http\Controllers\TaskController@store');
+Route::get('/tasks', '\App\Http\Controllers\TaskController@index');
 
-Route::get('/home#/dashboard', '\App\Http\Controllers\TaskController@index');

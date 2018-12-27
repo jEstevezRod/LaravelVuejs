@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +17,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-
+        $tasks = Task::all();
+        return [ 'tasks' => $tasks];
     }
 
     /**
@@ -41,10 +44,10 @@ class TaskController extends Controller
         $task->teamwork = $request->teamwork ? $request->teamwork : null;
         $task->subject = $request->subject ? $request->subject : 'subject default';
         $task->description = $request->description ? $request->description : 'desc default';
+        $task->state = $request->state ? $request->state : 'queue';
         $task->save();
 
-//        return redirect('home#/dashboard');
-        return [ 'message' => 'Task created correctly!'];
+        return [ 'message' => 'Task created correctly!', 'task' => $task];
     }
 
     /**

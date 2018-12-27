@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Buefy from 'buefy'
-import Router from './routes'
+import router from './routes'
 import axios from 'axios'
 
 window.Vue = require('vue');
@@ -25,5 +25,5 @@ Vue.component('task-container-component', require('./components/views/dashboard/
 
 const app = new Vue({
     el: '#app',
-    router: Router
+    router
 });

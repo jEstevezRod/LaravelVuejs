@@ -33,12 +33,16 @@
                             <input type="text" name="subject" id="subject" v-model="subject">
                             <label for="description">Your description is: </label>
                             <input type="text" name="description" id="description" v-model="description">
+                            <label for="state">Your task state is: </label>
+                            <input type="text" name="state" id="state" v-model="state">
+
                             <button type="submit">Add task</button>
                         </form>
                     </div>
                 </div>
             </div>
             <!--right side-->
+
             <div class="column is-9 task-wrapper">
                 <div class="columns is-variable is-2-mobile">
                     <div class="column task-state has-text-centered"> QUEUE
@@ -49,8 +53,9 @@
                     </div>
                     <div class="column task-state has-text-centered"> IN PROGRESS
                         <hr>
-                        <div class="box">soy una tarea</div>
-                        <div class="box">soy una tarea</div></div>
+                        <div v-for="task in tasks_list" class="box">{{task.subject}}</div>
+
+                    </div>
                     <div class="column task-state has-text-centered">FINISHED
                         <hr>
                         <div class="box">soy una tarea</div>
@@ -67,12 +72,23 @@
 <script>
     export default {
         name: "TaskContainer",
-        data: () => ({
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            teamwork: '',
-            subject: '',
-            description: ''
-        }),
+        data() {
+            return {
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                teamwork: '',
+                subject: '',
+                description: '',
+                state: 'queue',
+                tasks_list: [],
+            }
+        },
+        mounted() {
+
+                this.$axios.get('/tasks')
+                    .then(response => this.tasks_list = response.data.tasks)
+                    .catch(error => console.log(error.response))
+
+        },
         methods: {
 
             onSubmit() {
@@ -87,6 +103,7 @@
 
             onSuccess(response) {
                 alert(response.data.message)
+                this.tasks_list.push(response.data.task)
             }
         }
 

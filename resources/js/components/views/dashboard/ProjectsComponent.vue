@@ -1,38 +1,37 @@
 <template>
 
-    <div class="my-custom">
-        <!--<div>ESTO FUNCIONA {{$route.params.id}}</div>-->
-        <state :tasks_list="tasks_list" v-for="state in states_list" :state="state"></state>
+    <div class="my-custom" :key="$route.params.id" >
+        <state :tasks_list="tasks_list" v-for="state in states_list" :state="state" ></state>
     </div>
 </template>
 
 <script>
+    import {EventBus} from '../../../event-bus.js';
+
     export default {
         name: "ProjectsComponent",
-        props: {},
         data() {
             return {
                 tasks_list: [],
                 states_list: [],
+                state: '',
+                project_id: this.$route.params.id
             }
         },
-        mounted() {
+        created() {
+            EventBus.$on('updateStates', value => this.states_list.push(value))
+            EventBus.$on('updateTasks', value => this.tasks_list.push(value))
             this.$axios.get('/projects/' + this.$route.params.id)
                 .then(response => {
                     console.log(response.data)
                     this.tasks_list = response.data.tasks
+                    console.log(response.data.tasks)
                     this.states_list = response.data.states
                 })
 
         },
-        beforeUpdate() {
-            this.$axios.get('/projects/' + this.$route.params.id)
-                .then(response => {
-                    console.log(response.data)
-                    this.tasks_list = response.data.tasks
-                    this.states_list = response.data.states
-                })
-        }
+
+
     }
 </script>
 

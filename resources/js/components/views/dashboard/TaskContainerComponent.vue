@@ -6,7 +6,7 @@
             <!--left side-->
             <div class="column is-9 task-wrapper">
                 <div class="container is-fluid">
-                    <router-view></router-view>
+                    <router-view :key="$route.path"></router-view>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@
                             <p class="subtitle">PROJECTS</p>
                             <ul>
                                 <router-link v-for="project in project_list"
-                                             :to="'/dashboard/' + project.id">
+                                :to="{name: 'dashboard', params: {id: project.id}}">
                                     <li> {{project.p_name}}</li>
                                 </router-link>
                             </ul>
@@ -148,8 +148,7 @@
                 .then(response => this.teams_list = response.data.teams)
                 .catch(error => console.log(error.response))
 
-            EventBus.$on('updateStates', value => this.states_list.push(value))
-            EventBus.$on('updateTasks', value => this.tasks_list.push(value))
+
             EventBus.$on('updateProjects', value => this.project_list.push(value))
             EventBus.$on('updateTeam', value => this.teams_list.push(value))
         },

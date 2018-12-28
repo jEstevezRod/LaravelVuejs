@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     routes: [
         {
-            path: '/home',
+            path: '/',
             component: HomeViewComponent
         },
         {
@@ -26,6 +26,7 @@ const router = new VueRouter({
                 },
                 {
                     path: ':id',
+                    name: 'dashboard',
                     component: ProjectsComponent
                 }
             ]

@@ -15,13 +15,7 @@ class ForeignKeysConstraint extends Migration
     {
         Schema::enableForeignKeyConstraints();
 
-        Schema::table('users', function (Blueprint $table) {
 
-            $table->foreign('team_id')->references('id')->on('teams');
-
-            $table->foreign('project_id')->references('id')->on('projects');
-
-        });
         Schema::table('tasks', function (Blueprint $table) {
 
             $table->foreign('author')->references('id')->on('users');

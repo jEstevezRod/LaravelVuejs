@@ -9463,3 +9463,7 @@ label.panel-block {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+#app {
+  background-color: #ecf0f1;
+}
+

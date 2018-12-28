@@ -12531,9 +12531,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_buef
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.prototype.$axios = __WEBPACK_IMPORTED_MODULE_3_axios___default.a;
 
-//MAIN AND SHARED
+//shared components ( footer and navbar )
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('footer-component', __webpack_require__(57));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('navbar-component', __webpack_require__(62));
+// home components
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('hero-component', __webpack_require__(67));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('main-component', __webpack_require__(9));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('administration-component', __webpack_require__(72));
@@ -12541,9 +12542,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('target-component', __webp
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('up-side-component', __webpack_require__(10));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('feed-component', __webpack_require__(82));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('feed-message-component', __webpack_require__(87));
-
-//DASHBOARD
+// dashboard ( task manager )
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('task-container-component', __webpack_require__(8));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('state', __webpack_require__(97));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-task', __webpack_require__(102));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-project', __webpack_require__(107));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-state', __webpack_require__(112));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-team', __webpack_require__(118));
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
@@ -27668,7 +27673,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.test[data-v-10152e30] {\n    padding-top: 100px;\n    min-height: 800px;\n}\n.sidebar-wrapper[data-v-10152e30] {\n    border-radius: 4px;\n}\n.task-wrapper[data-v-10152e30] {\n    border-radius: 4px;\n}\n.sidebar[data-v-10152e30] {\n    margin: 20px;\n    padding: 20px;\n    border-radius: 4px;\n    border: 1px solid #ebebed;\n    background-color: #f0f0f2;\n    -webkit-box-shadow: 1px 1px 7px #9a9a9a;\n            box-shadow: 1px 1px 7px #9a9a9a;\n    min-height: 300px;\n}\n.projects-wrapper[data-v-10152e30] {\n    margin-top: 30px;\n}\n.task-state[data-v-10152e30] {\n    border: 1px solid #cbcbcb;\n    border-radius: 5px;\n    margin: 15px 15px;\n    min-height: 100px;\n    background-color: #84d6ac;\n    -webkit-box-shadow: 1px 1px 7px #d3d3d3;\n            box-shadow: 1px 1px 7px #d3d3d3;\n}\n", ""]);
+exports.push([module.i, "\n.test[data-v-10152e30] {\n    padding-top: 100px;\n    min-height: 800px;\n}\n.sidebar-wrapper[data-v-10152e30] {\n    border-radius: 4px;\n}\n.task-wrapper[data-v-10152e30] {\n    border-radius: 4px;\n}\n.sidebar[data-v-10152e30] {\n    margin: 20px;\n    padding: 20px;\n    border-radius: 4px;\n    border: 1px solid #ebebed;\n    background-color: #f0f0f2;\n    -webkit-box-shadow: 1px 1px 7px #9a9a9a;\n            box-shadow: 1px 1px 7px #9a9a9a;\n    min-height: 300px;\n}\n.projects-wrapper[data-v-10152e30] {\n    margin-top: 30px;\n}\n.my-custom[data-v-10152e30] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n\n", ""]);
 
 // exports
 
@@ -27712,6 +27717,18 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(117);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -27784,16 +27801,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "TaskContainer",
     data: function data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            teamwork: '',
+            project_id: '',
             subject: '',
             description: '',
             state: 'queue',
-            tasks_list: []
+            tasks_list: [],
+            states_list: [],
+            project_list: [],
+            teams_list: [],
+            state_name: '',
+            p_team: '',
+            p_name: '',
+            isComponentModalActive: false,
+            isComponentModalActive2: false,
+            isComponentModalActive3: false,
+            isComponentModalActive4: false,
+            formProps: {
+                subject: '',
+                project_id: '',
+                description: '',
+                state: ''
+            },
+            formProps2: {
+                p_name: '',
+                p_team: ''
+            },
+            formProps3: {
+                name: '',
+                project: ''
+            },
+            formProps4: {
+                t_name: ''
+            }
         };
     },
     mounted: function mounted() {
@@ -27804,22 +27850,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).catch(function (error) {
             return console.log(error.response);
         });
-    },
+        this.$axios.get('/states').then(function (response) {
+            return _this.states_list = response.data.states;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
+        this.$axios.get('/projects').then(function (response) {
+            return _this.project_list = response.data.projects;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
+        this.$axios.get('/teams').then(function (response) {
+            return _this.teams_list = response.data.teams;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
 
-    methods: {
-        onSubmit: function onSubmit() {
-            this.$axios.post('/tasks', {
-                teamwork: this.teamwork,
-                subject: this.subject,
-                description: this.description
-            }).then(this.onSuccess).catch();
-        },
-        onSuccess: function onSuccess(response) {
-            alert(response.data.message);
-            this.tasks_list.push(response.data.task);
-        }
+        __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$on('updateStates', function (value) {
+            return _this.states_list.push(value);
+        });
+        __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$on('updateTasks', function (value) {
+            return _this.tasks_list.push(value);
+        });
+        __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$on('updateProjects', function (value) {
+            return _this.project_list.push(value);
+        });
+        __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$on('updateTeam', function (value) {
+            return _this.teams_list.push(value);
+        });
     }
-
 });
 
 /***/ }),
@@ -27836,233 +27895,233 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "columns" }, [
-      _c("div", { staticClass: "column is-3 sidebar-wrapper" }, [
-        _c("div", { staticClass: "columns" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "column box" }, [
-            _c("p", { staticClass: "subtitle" }, [_vm._v("Tasks")]),
-            _vm._v(" "),
-            _c(
-              "form",
-              {
-                attrs: { action: "/tasks", method: "post" },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.onSubmit($event)
-                  }
-                }
-              },
-              [
-                _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
-                  domProps: { value: _vm.csrf }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "teamwork" } }, [
-                  _vm._v("Your team: ")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.teamwork,
-                      expression: "teamwork"
-                    }
-                  ],
-                  attrs: { type: "text", name: "teamwork", id: "teamwork" },
-                  domProps: { value: _vm.teamwork },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.teamwork = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "subject" } }, [
-                  _vm._v("Your title is: ")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.subject,
-                      expression: "subject"
-                    }
-                  ],
-                  attrs: { type: "text", name: "subject", id: "subject" },
-                  domProps: { value: _vm.subject },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.subject = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "description" } }, [
-                  _vm._v("Your description is: ")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.description,
-                      expression: "description"
-                    }
-                  ],
-                  attrs: {
-                    type: "text",
-                    name: "description",
-                    id: "description"
-                  },
-                  domProps: { value: _vm.description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.description = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "state" } }, [
-                  _vm._v("Your task state is: ")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.state,
-                      expression: "state"
-                    }
-                  ],
-                  attrs: { type: "text", name: "state", id: "state" },
-                  domProps: { value: _vm.state },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.state = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("button", { attrs: { type: "submit" } }, [
-                  _vm._v("Add task")
-                ])
-              ]
-            )
-          ])
+      _c("div", { staticClass: "column is-9 task-wrapper" }, [
+        _c("div", { staticClass: "container is-fluid" }, [
+          _c(
+            "div",
+            { staticClass: "my-custom" },
+            _vm._l(_vm.states_list, function(state) {
+              return _c("state", {
+                attrs: { tasks_list: _vm.tasks_list, state: state }
+              })
+            })
+          )
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "column is-9 task-wrapper" }, [
-        _c("div", { staticClass: "columns is-variable is-2-mobile" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "column task-state has-text-centered" },
-            [
-              _vm._v(" IN PROGRESS\n                    "),
-              _c("hr"),
+      _c("div", { staticClass: "column is-3 sidebar-wrapper" }, [
+        _c("div", { staticClass: "columns" }, [
+          _c("div", { staticClass: "column is-12 sidebar" }, [
+            _c("div", { staticClass: "teams-wrapper" }, [
+              _c("p", { staticClass: "subtitle" }, [_vm._v("TEAMS:")]),
               _vm._v(" "),
-              _vm._l(_vm.tasks_list, function(task) {
-                return _c("div", { staticClass: "box" }, [
-                  _vm._v(_vm._s(task.subject))
-                ])
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _vm._m(2)
+              _c(
+                "ul",
+                _vm._l(_vm.teams_list, function(team) {
+                  return _c("li", [_vm._v(_vm._s(team.t_name))])
+                })
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "projects-wrapper" }, [
+              _c("p", { staticClass: "subtitle" }, [_vm._v("PROJECTS")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                _vm._l(_vm.project_list, function(project) {
+                  return _c("li", [_vm._v(" " + _vm._s(project.p_name) + " ")])
+                })
+              )
+            ]),
+            _vm._v(" "),
+            _c("div"),
+            _vm._v(" "),
+            _c(
+              "section",
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-primary is-medium",
+                    on: {
+                      click: function($event) {
+                        _vm.isComponentModalActive = true
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Add new task\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-modal",
+                  {
+                    attrs: {
+                      active: _vm.isComponentModalActive,
+                      "has-modal-card": ""
+                    },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.isComponentModalActive = $event
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "modal-add-task",
+                      _vm._b({}, "modal-add-task", _vm.formProps, false)
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "section",
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-info is-medium",
+                    on: {
+                      click: function($event) {
+                        _vm.isComponentModalActive2 = true
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Add new project\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-modal",
+                  {
+                    attrs: {
+                      active: _vm.isComponentModalActive2,
+                      "has-modal-card": ""
+                    },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.isComponentModalActive2 = $event
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "modal-add-project",
+                      _vm._b({}, "modal-add-project", _vm.formProps2, false)
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "section",
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-info is-medium",
+                    on: {
+                      click: function($event) {
+                        _vm.isComponentModalActive3 = true
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Add new state\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-modal",
+                  {
+                    attrs: {
+                      active: _vm.isComponentModalActive3,
+                      "has-modal-card": ""
+                    },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.isComponentModalActive3 = $event
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "modal-add-state",
+                      _vm._b({}, "modal-add-state", _vm.formProps3, false)
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "section",
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-info is-medium",
+                    on: {
+                      click: function($event) {
+                        _vm.isComponentModalActive4 = true
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Add new team\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-modal",
+                  {
+                    attrs: {
+                      active: _vm.isComponentModalActive4,
+                      "has-modal-card": ""
+                    },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.isComponentModalActive4 = $event
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "modal-add-team",
+                      _vm._b({}, "modal-add-team", _vm.formProps4, false)
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column sidebar" }, [
-      _c("div", { staticClass: "teams-wrapper" }, [
-        _c("p", { staticClass: "subtitle" }, [_vm._v("TEAMS:")]),
-        _vm._v(" "),
-        _c("ul", [
-          _c("li", [_vm._v("team 1")]),
-          _vm._v(" "),
-          _c("li", [_vm._v("team 2")]),
-          _vm._v(" "),
-          _c("li", [_vm._v("team 3")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "projects-wrapper" }, [
-        _c("p", { staticClass: "subtitle" }, [_vm._v("PROJECTS")]),
-        _vm._v(" "),
-        _c("ul", [
-          _c("li", [_vm._v("project 1")]),
-          _vm._v(" "),
-          _c("li", [_vm._v("project 2")]),
-          _vm._v(" "),
-          _c("li", [_vm._v("project 3")])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column task-state has-text-centered" }, [
-      _vm._v(" QUEUE\n                    "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column task-state has-text-centered" }, [
-      _vm._v("FINISHED\n                    "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "box" }, [_vm._v("soy una tarea")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -30586,6 +30645,1458 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(98)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(100)
+/* template */
+var __vue_template__ = __webpack_require__(101)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-77c9ac1a"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/StateComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-77c9ac1a", Component.options)
+  } else {
+    hotAPI.reload("data-v-77c9ac1a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(99);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("57bfe022", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-77c9ac1a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./StateComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-77c9ac1a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./StateComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.task-state[data-v-77c9ac1a] {\n    border: 1px solid #cbcbcb;\n    border-radius: 5px;\n    margin: 15px 15px;\n    min-height: 100px;\n    background-color: #34495e;\n    -webkit-box-shadow: 1px 1px 7px #d3d3d3;\n            box-shadow: 1px 1px 7px #d3d3d3;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(117);
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['state', 'tasks_list'],
+    name: "StateComponent",
+    data: function data() {
+        return {
+            taskToShow: []
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$on('updateTasks', function (value) {
+            value.state == _this.state.name ? _this.taskToShow.push(value) : false;
+        });
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = this.tasks_list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var task = _step.value;
+
+                if (task.state === this.state.name) {
+                    this.taskToShow.push(task);
+                }
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+    },
+
+    methods: {}
+
+});
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "column is-3-desktop is-4-tablet is-6-mobile task-state" },
+    [
+      _c("p", { staticClass: "subtitle has-text-white has-text-centered" }, [
+        _vm._v(_vm._s(_vm.state.name) + " ")
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm._l(_vm.taskToShow, function(task) {
+        return _c("div", { staticClass: "box" }, [
+          _vm._v(" " + _vm._s(task.subject))
+        ])
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-77c9ac1a", module.exports)
+  }
+}
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(103)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(105)
+/* template */
+var __vue_template__ = __webpack_require__(106)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2fbeba6d"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/ModalAddTaskComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2fbeba6d", Component.options)
+  } else {
+    hotAPI.reload("data-v-2fbeba6d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(104);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("794d06f5", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2fbeba6d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTaskComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2fbeba6d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTaskComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 105 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(117);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "ModalAddTaskComponent",
+    data: function data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            project_id: '',
+            subject: '',
+            description: '',
+            state: '',
+            states_list: [],
+            project_list: [],
+            tasks_list: [],
+            p_team: '',
+            p_name: ''
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$axios.get('/states').then(function (response) {
+            return _this.states_list = response.data.states;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
+        this.$axios.get('/projects').then(function (response) {
+            return _this.project_list = response.data.projects;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
+    },
+
+    methods: {
+        onSubmit: function onSubmit() {
+            this.$axios.post('/tasks', {
+                project_id: this.project_id,
+                subject: this.subject,
+                description: this.description,
+                state: this.state
+            }).then(this.onSuccess).catch();
+        },
+        onSuccess: function onSuccess(response) {
+            alert(response.data.message);
+            __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateTasks', response.data.task);
+        }
+    }
+});
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { action: "/tasks", method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmit($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c("label", { attrs: { for: "subject" } }, [
+              _vm._v("Your title is: ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.subject,
+                  expression: "subject"
+                }
+              ],
+              staticClass: "input",
+              attrs: {
+                type: "text",
+                name: "subject",
+                id: "subject",
+                required: ""
+              },
+              domProps: { value: _vm.subject },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.subject = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "description" } }, [
+              _vm._v("Your description is: ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.description,
+                  expression: "description"
+                }
+              ],
+              staticClass: "input",
+              attrs: {
+                type: "text",
+                name: "description",
+                id: "description",
+                required: ""
+              },
+              domProps: { value: _vm.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.description = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: "Choose the task state" } },
+              [
+                _c(
+                  "b-select",
+                  {
+                    attrs: { placeholder: "Select a character", rounded: "" },
+                    model: {
+                      value: _vm.state,
+                      callback: function($$v) {
+                        _vm.state = $$v
+                      },
+                      expression: "state"
+                    }
+                  },
+                  _vm._l(_vm.states_list, function(state_option) {
+                    return _c(
+                      "option",
+                      { domProps: { value: state_option.name } },
+                      [_vm._v(_vm._s(state_option.name))]
+                    )
+                  })
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: "Pick a project" } },
+              [
+                _c(
+                  "b-select",
+                  {
+                    attrs: { placeholder: "Select a project", rounded: "" },
+                    model: {
+                      value: _vm.project_id,
+                      callback: function($$v) {
+                        _vm.project_id = $$v
+                      },
+                      expression: "project_id"
+                    }
+                  },
+                  _vm._l(_vm.project_list, function(project) {
+                    return _c("option", { domProps: { value: project.id } }, [
+                      _vm._v(_vm._s(project.p_name))
+                    ])
+                  })
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Add task")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
+        _vm._v("Add task")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2fbeba6d", module.exports)
+  }
+}
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(108)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(110)
+/* template */
+var __vue_template__ = __webpack_require__(111)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-29225e7f"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/ModalAddProjectComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-29225e7f", Component.options)
+  } else {
+    hotAPI.reload("data-v-29225e7f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(109);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("32f63651", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29225e7f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddProjectComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29225e7f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddProjectComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 110 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(117);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "ModalAddProjectComponent",
+
+    data: function data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            p_name: '',
+            p_team: '',
+            team_list: []
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$axios.get('/teams').then(function (response) {
+            return _this.team_list = response.data.teams;
+        });
+    },
+
+
+    methods: {
+        onSubmitProject: function onSubmitProject() {
+            var _this2 = this;
+
+            this.$axios.post('/projects', {
+                name: this.p_name,
+                team: this.p_team
+            }).then(function (response) {
+                alert(response.data.message);
+                __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateProjects', response.data.project);
+                _this2.$axios.post('/userInProject', {
+                    project_id: response.data.project.id
+                }).then(function (response) {
+                    return console.log(response.data);
+                });
+            }).catch();
+        }
+    }
+
+});
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { action: "/tasks", method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmitProject($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "p_name" } }, [
+              _vm._v("Your project name: ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.p_name,
+                  expression: "p_name"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "text", name: "p_name", id: "p_name" },
+              domProps: { value: _vm.p_name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.p_name = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: "Choose a team for you project" } },
+              [
+                _c(
+                  "b-select",
+                  {
+                    attrs: { placeholder: "Select a team", rounded: "" },
+                    model: {
+                      value: _vm.p_team,
+                      callback: function($$v) {
+                        _vm.p_team = $$v
+                      },
+                      expression: "p_team"
+                    }
+                  },
+                  _vm._l(_vm.team_list, function(team_option) {
+                    return _c(
+                      "option",
+                      { domProps: { value: team_option.id } },
+                      [_vm._v(_vm._s(team_option.t_name))]
+                    )
+                  })
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Add Project")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
+        _vm._v("Add Project")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-29225e7f", module.exports)
+  }
+}
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(113)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(115)
+/* template */
+var __vue_template__ = __webpack_require__(116)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-29cda672"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/ModalAddStateComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-29cda672", Component.options)
+  } else {
+    hotAPI.reload("data-v-29cda672", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(114);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("19bab602", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29cda672\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddStateComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29cda672\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddStateComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(117);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "ModalAddStateComponent",
+    data: function data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            state_name: '',
+            state_project: ''
+
+        };
+    },
+
+    methods: {
+        addState: function addState() {
+            this.$axios.post('/states', {
+                name: this.state_name,
+                project: this.state_project
+            }).then(this.onSuccessState);
+        },
+        onSuccessState: function onSuccessState(response) {
+            alert(response.data.message);
+            __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateStates', response.data.state);
+        }
+    }
+});
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { action: "/tasks", method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.addState($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("section", { staticClass: "modal-card-body" }, [
+          _c("input", {
+            attrs: { type: "hidden", name: "_token" },
+            domProps: { value: _vm.csrf }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "name" } }, [
+            _vm._v("The name for the new state: ")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.state_name,
+                expression: "state_name"
+              }
+            ],
+            staticClass: "input is-info",
+            attrs: { type: "text", id: "name" },
+            domProps: { value: _vm.state_name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.state_name = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "project" } }, [
+            _vm._v("Do you want to add in any project ?")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.state_project,
+                expression: "state_project"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", id: "project" },
+            domProps: { value: _vm.state_project },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.state_project = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Add State")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
+        _vm._v("Add new state")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-29cda672", module.exports)
+  }
+}
+
+/***/ }),
+/* 117 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventBus; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+
+var EventBus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(119)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(121)
+/* template */
+var __vue_template__ = __webpack_require__(122)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-28544c95"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/ModalAddTeamComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-28544c95", Component.options)
+  } else {
+    hotAPI.reload("data-v-28544c95", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(120);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("d522e30e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28544c95\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTeamComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28544c95\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTeamComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(117);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "ModalAddTeamComponent",
+    data: function data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            t_name: ''
+        };
+    },
+
+    methods: {
+        onSubmitTeam: function onSubmitTeam() {
+            var _this = this;
+
+            this.$axios.post('/teams', {
+                t_name: this.t_name
+            }).then(function (response) {
+                alert(response.data.message);
+                __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateTeam', response.data.team);
+                _this.$axios.post('/userInTeam', {
+                    team_id: response.data.team.id
+                }).then(function (response) {
+                    return console.log(response.data);
+                });
+            }).catch();
+        }
+    }
+});
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { action: "/tasks", method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmitTeam($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("section", { staticClass: "modal-card-body" }, [
+          _c("input", {
+            attrs: { type: "hidden", name: "_token" },
+            domProps: { value: _vm.csrf }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "t_name" } }, [
+            _vm._v("Your team name: ")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.t_name,
+                expression: "t_name"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", name: "t_name", id: "t_name" },
+            domProps: { value: _vm.t_name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.t_name = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Add Team")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
+        _vm._v("Add Team")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-28544c95", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

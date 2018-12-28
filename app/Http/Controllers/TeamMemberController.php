@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use App\Task;
+use App\TeamMember;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TaskController extends Controller
+class TeamMemberController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +15,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::where('author','=', Auth::user()->getId())->get();
+        $teams = TeamMember::where('user_id','=', Auth::user()->getId())->get();
 
-        return [ 'tasks' => $tasks];
+        return [ 'projects' => $teams];
     }
 
     /**
@@ -37,28 +34,25 @@ class TaskController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return mixed
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $task = new Task();
-        $task->author = Auth::user()->getId() ? Auth::user()->getId() : 1;
-        $task->project_id = $request->project_id ? $request->project_id : null;
-        $task->subject = $request->subject ? $request->subject : 'subject default';
-        $task->description = $request->description ? $request->description : 'desc default';
-        $task->state = $request->state ? $request->state : 'queue';
-        $task->save();
+        $teammember = new TeamMember();
+        $teammember->user_id = Auth::user()->getId();
+        $teammember->team_id = $request->team_id;
+        $teammember->save();
 
-        return [ 'message' => 'Task created correctly!', 'task' => $task];
+        return [ 'message' => 'Team Member created correctly', 'teamMember' => $teammember];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\TeamMember  $teamMember
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(TeamMember $teamMember)
     {
         //
     }
@@ -66,10 +60,10 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param  \App\TeamMember  $teamMember
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(TeamMember $teamMember)
     {
         //
     }
@@ -78,10 +72,10 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
+     * @param  \App\TeamMember  $teamMember
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, TeamMember $teamMember)
     {
         //
     }
@@ -89,10 +83,10 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Task  $task
+     * @param  \App\TeamMember  $teamMember
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(TeamMember $teamMember)
     {
         //
     }

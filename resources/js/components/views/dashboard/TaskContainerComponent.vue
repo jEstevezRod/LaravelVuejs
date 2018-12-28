@@ -6,9 +6,7 @@
             <!--left side-->
             <div class="column is-9 task-wrapper">
                 <div class="container is-fluid">
-                    <div class="my-custom">
-                        <state class="" :tasks_list="tasks_list" v-for="state in states_list" :state="state"></state>
-                    </div>
+                    <router-view></router-view>
                 </div>
             </div>
 
@@ -16,6 +14,8 @@
             <div class="column is-3 sidebar-wrapper">
                 <div class="columns">
                     <div class="column is-12 sidebar">
+
+                        <!--sidebar information-->
                         <div class="teams-wrapper">
                             <p class="subtitle">TEAMS:</p>
                             <ul>
@@ -26,52 +26,59 @@
                         <div class="projects-wrapper">
                             <p class="subtitle">PROJECTS</p>
                             <ul>
-                                <li v-for="project in project_list"> {{project.p_name}} </li>
+                                <router-link v-for="project in project_list"
+                                             :to="'/dashboard/' + project.id">
+                                    <li> {{project.p_name}}</li>
+                                </router-link>
                             </ul>
                         </div>
-                        <div>
+                        <!--end sidebar information-->
 
+                        <!--modals-->
+                        <div class="box">
+                            <section>
+                                <button class="button is-primary is-rounded"
+                                        @click="isComponentModalActive = true">
+                                    Add new task
+                                </button>
+
+                                <b-modal :active.sync="isComponentModalActive" has-modal-card>
+                                    <modal-add-task v-bind="formProps"></modal-add-task>
+                                </b-modal>
+                            </section>
+                            <section>
+                                <button class="button is-info is-danger is-rounded"
+                                        @click="isComponentModalActive2 = true">
+                                    Add new project
+                                </button>
+
+                                <b-modal :active.sync="isComponentModalActive2" has-modal-card>
+                                    <modal-add-project v-bind="formProps2"></modal-add-project>
+                                </b-modal>
+                            </section>
+                            <section>
+                                <button class="button is-info is-warning is-rounded"
+                                        @click="isComponentModalActive3 = true">
+                                    Add new state
+                                </button>
+
+                                <b-modal :active.sync="isComponentModalActive3" has-modal-card>
+                                    <modal-add-state v-bind="formProps3"></modal-add-state>
+                                </b-modal>
+                            </section>
+                            <section>
+                                <button class="button is-info  is-rounded"
+                                        @click="isComponentModalActive4 = true">
+                                    Add new team
+                                </button>
+
+                                <b-modal :active.sync="isComponentModalActive4" has-modal-card>
+                                    <modal-add-team v-bind="formProps4"></modal-add-team>
+                                </b-modal>
+                            </section>
                         </div>
-                        <section>
-                            <button class="button is-primary is-medium"
-                                    @click="isComponentModalActive = true">
-                                Add new task
-                            </button>
+                        <!--end modals-->
 
-                            <b-modal :active.sync="isComponentModalActive" has-modal-card>
-                                <modal-add-task v-bind="formProps"></modal-add-task>
-                            </b-modal>
-                        </section>
-                        <section>
-                            <button class="button is-info is-medium"
-                                    @click="isComponentModalActive2 = true">
-                                Add new project
-                            </button>
-
-                            <b-modal :active.sync="isComponentModalActive2" has-modal-card>
-                                <modal-add-project v-bind="formProps2"></modal-add-project>
-                            </b-modal>
-                        </section>
-                        <section>
-                            <button class="button is-info is-medium"
-                                    @click="isComponentModalActive3 = true">
-                                Add new state
-                            </button>
-
-                            <b-modal :active.sync="isComponentModalActive3" has-modal-card>
-                                <modal-add-state v-bind="formProps3"></modal-add-state>
-                            </b-modal>
-                        </section>
-                        <section>
-                            <button class="button is-info is-medium"
-                                    @click="isComponentModalActive4 = true">
-                                Add new team
-                            </button>
-
-                            <b-modal :active.sync="isComponentModalActive4" has-modal-card>
-                                <modal-add-team v-bind="formProps4"></modal-add-team>
-                            </b-modal>
-                        </section>
                     </div>
                 </div>
             </div>
@@ -126,12 +133,17 @@
             this.$axios.get('/tasks')
                 .then(response => this.tasks_list = response.data.tasks)
                 .catch(error => console.log(error.response))
+
+            this.$axios.get('/projects')
+                .then(response => {
+                    this.project_list = response.data.projects
+                })
+                .catch(error => console.log(error.response))
+
             this.$axios.get('/states')
                 .then(response => this.states_list = response.data.states)
                 .catch(error => console.log(error.response))
-            this.$axios.get('/projects')
-                .then(response => this.project_list = response.data.projects)
-                .catch(error => console.log(error.response))
+
             this.$axios.get('/teams')
                 .then(response => this.teams_list = response.data.teams)
                 .catch(error => console.log(error.response))
@@ -175,10 +187,5 @@
         margin-top: 30px;
     }
 
-    .my-custom {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-    }
 
 </style>

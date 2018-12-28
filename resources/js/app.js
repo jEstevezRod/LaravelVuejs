@@ -23,12 +23,12 @@ Vue.component('feed-message-component', require('./components/views/home/FeedMes
 // dashboard ( task manager )
 Vue.component('task-container-component', require('./components/views/dashboard/TaskContainerComponent.vue'));
 Vue.component('state', require('./components/views/dashboard/StateComponent'));
-Vue.component('modal-add-task', require('./components/views/dashboard/ModalAddTaskComponent'))
-Vue.component('modal-add-project', require('./components/views/dashboard/ModalAddProjectComponent'))
-Vue.component('modal-add-state', require('./components/views/dashboard/ModalAddStateComponent'))
-Vue.component('modal-add-team', require('./components/views/dashboard/ModalAddTeamComponent'))
-
-
+Vue.component('modal-add-task', require('./components/views/dashboard/ModalAddTaskComponent'));
+Vue.component('modal-add-project', require('./components/views/dashboard/ModalAddProjectComponent'));
+Vue.component('modal-add-state', require('./components/views/dashboard/ModalAddStateComponent'));
+Vue.component('modal-add-team', require('./components/views/dashboard/ModalAddTeamComponent'));
+Vue.component('project', require('./components/views/dashboard/ProjectsComponent'));
+Vue.component('dashboard-home', require('./components/views/dashboard/DashboardHomeComponent'))
 
 const app = new Vue({
     el: '#app',

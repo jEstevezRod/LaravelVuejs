@@ -19,7 +19,7 @@
                                 <div class="navbar-end">
                                     <div class="tabs is-right">
                                         <ul>
-                                            <li class="is-active">
+                                            <li > <!--class="is-active"-->
                                                 <router-link to="/home">Home</router-link>
                                             </li>
                                             <li>

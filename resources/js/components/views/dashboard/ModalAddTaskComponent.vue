@@ -7,15 +7,9 @@
             <section class="modal-card-body">
 
                 <label for="subject">Your title is: </label>
-                <input class="input" type="text" name="subject" id="subject" v-model="subject" required>
+                <input class="input is-rounded" type="text" name="subject" id="subject" v-model="subject" required>
                 <label for="description">Your description is: </label>
                 <input class="input" type="text" name="description" id="description" v-model="description" required>
-
-                <b-field label="Choose the task state">
-                    <b-select placeholder="Select a character" v-model="state"  rounded>
-                        <option v-for="state_option in states_list" v-bind:value="state_option.name">{{state_option.name}}</option>
-                    </b-select>
-                </b-field>
 
                 <b-field label="Pick a project">
                     <b-select placeholder="Select a project" v-model="project_id" rounded>
@@ -23,6 +17,14 @@
                     </b-select>
                 </b-field>
 
+
+                <b-field v-if="project_id != ''" label="Choose the task state">
+                    <b-select placeholder="Select a character" v-model="state" rounded>
+                        <option v-for="state_option in statesForProjectSelected" v-bind:value="state_option.name">
+                            {{state_option.name}}
+                        </option>
+                    </b-select>
+                </b-field>
 
 
             </section>
@@ -37,7 +39,8 @@
 </template>
 
 <script>
-    import { EventBus } from '../../../event-bus.js';
+    import {EventBus} from '../../../event-bus.js';
+
     export default {
         name: "ModalAddTaskComponent",
         data() {
@@ -51,7 +54,10 @@
                 project_list: [],
                 tasks_list: [],
                 p_team: '',
-                p_name: ''
+                p_name: '',
+                isSelected: false,
+                project_info: [],
+                statesForProjectSelected: [],
             }
         },
         mounted() {
@@ -81,6 +87,17 @@
                 EventBus.$emit('updateTasks', response.data.task);
 
             },
+            getInfoProject() {
+                console.log('dada')
+                this.$axios.get('/projects/' + this.project_id)
+                    .then(response => this.statesForProjectSelected = response.data.states )
+            }
+        },
+        watch: {
+            'project_id': function () {
+                this.$axios.get('/projects/' + this.project_id)
+                    .then(response => this.statesForProjectSelected = response.data.states )
+            }
         }
     }
 </script>

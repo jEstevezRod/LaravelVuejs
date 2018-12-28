@@ -17,20 +17,7 @@ class StateController extends Controller
     public function index()
     {
         $own_states = State::where('author','=', Auth::user()->getId())->get();
-        $states_to_return = [];
 
-        if (count($own_states) <= 0) {
-            $default_states = ['queue', 'in progress', 'completed'];
-            foreach ($default_states as $state_default){
-                $state = new State();
-                $state->name = $state_default;
-                $state->author = Auth::user()->getId() ? Auth::user()->getId() : null;
-                $state->project = null;
-                $state->save();
-                array_push($states_to_return, $state);
-            }
-            return [ 'states' => $states_to_return];
-        }
 
 
         return ['states' => $own_states];
@@ -66,12 +53,13 @@ class StateController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\State  $state
+     * @param
      * @return \Illuminate\Http\Response
      */
-    public function show(State $state)
+    public function show($value)
     {
-        //
+
+        return [ 'message' => $value];
     }
 
     /**
@@ -107,4 +95,6 @@ class StateController extends Controller
     {
         //
     }
+
+
 }

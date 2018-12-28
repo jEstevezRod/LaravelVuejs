@@ -7,10 +7,8 @@
 </template>
 
 <script>
-    import UpSideComponent from "./UpSideComponent";
     export default {
         name: "MainComponent",
-        components: {UpSideComponent}
     }
 </script>
 

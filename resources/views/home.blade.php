@@ -26,7 +26,6 @@
 <body>
     <div id="app">
         <navbar-component></navbar-component>
-        {{--<main-component></main-component>--}}
         <router-view></router-view>
         <footer-component></footer-component>
     </div>

@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::get('/web', 'HomeController@index')->name('home');
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::post('/tasks', '\App\Http\Controllers\TaskController@store');
 Route::get('/tasks', '\App\Http\Controllers\TaskController@index');
@@ -27,6 +27,7 @@ Route::post('/states','\App\Http\Controllers\StateController@store');
 
 Route::get('/projects','\App\Http\Controllers\ProjectController@index');
 Route::post('/projects','\App\Http\Controllers\ProjectController@store');
+Route::get('/projects/{id}', '\App\Http\Controllers\ProjectController@show');
 
 Route::get('/teams','\App\Http\Controllers\TeamController@index');
 Route::post('/teams','\App\Http\Controllers\TeamController@store');
@@ -36,3 +37,4 @@ Route::post('/userInProject', '\App\Http\Controllers\ProjectUserController@store
 
 Route::get('/userInTeam', '\App\Http\Controllers\TeamMemberController@index');
 Route::post('/userInTeam', '\App\Http\Controllers\TeamMemberController@store');
+

@@ -20,7 +20,7 @@
                                     <div class="tabs is-right">
                                         <ul>
                                             <li class="is-active">
-                                                <router-link to="/">Home</router-link>
+                                                <router-link to="/home">Home</router-link>
                                             </li>
                                             <li>
                                                 <router-link to="/dashboard">Dashboard</router-link>

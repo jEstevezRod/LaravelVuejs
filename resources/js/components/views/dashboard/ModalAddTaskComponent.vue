@@ -83,7 +83,12 @@
                     .catch()
             },
             onSuccess(response) {
-                alert(response.data.message)
+                this.$toast.open({
+                    duration: 5000,
+                    message: response.data.message,
+                    position: 'is-top',
+                    type: 'is-success'
+                });
                 EventBus.$emit('updateTasks', response.data.task);
 
             },

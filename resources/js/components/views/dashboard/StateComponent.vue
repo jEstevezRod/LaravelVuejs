@@ -3,6 +3,7 @@
         <p class="subtitle has-text-white has-text-centered">
             {{state.name}}
         </p>
+        <hr>
 
         <draggable class="max-height" v-model="taskToShow" :options="{group:'state'}" @start="drag=true"
                    @change="modifyState($event,state.name)">

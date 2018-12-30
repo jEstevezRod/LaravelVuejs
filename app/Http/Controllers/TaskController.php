@@ -6,6 +6,7 @@ use DB;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 class TaskController extends Controller
 {
@@ -42,7 +43,7 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $task = new Task();
-        $task->author = Auth::user()->getId() ? Auth::user()->getId() : 1;
+        $task->author = Auth::user()->getId() ;
         $task->project_id = $request->project_id ? $request->project_id : null;
         $task->subject = $request->subject ? $request->subject : 'subject default';
         $task->description = $request->description ? $request->description : 'desc default';
@@ -66,24 +67,29 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Task  $task
+     * @param
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        //
-    }
 
+    }
     /**
-     * Update the specified resource in storage.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
-    public function update(Request $request, Task $task)
+
+    public function updates(Request $request, $id, $state)
     {
-        //
+
+
+        DB::table('tasks')
+            ->where('id', $id)
+            ->update(['state' => $state]);
+
+        return [ 'message' => 'Task nº '. $id .' moved to '. $state];
     }
 
     /**

@@ -56,11 +56,18 @@
                     project: this.state_project
                 })
                     .then(this.onSuccessState)
+                    .catch(error => console.log(error.response))
             },
 
             onSuccessState(response) {
-                alert(response.data.message)
                 EventBus.$emit('updateStates', response.data.state);
+                this.$toast.open({
+                    duration: 5000,
+                    message: response.data.message,
+                    position: 'is-top',
+                    type: 'is-success'
+                })
+
             },
 
         }

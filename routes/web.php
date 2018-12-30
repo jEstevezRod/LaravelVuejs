@@ -21,6 +21,7 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::post('/tasks', '\App\Http\Controllers\TaskController@store');
 Route::get('/tasks', '\App\Http\Controllers\TaskController@index');
+Route::put('/tasks/{id}/{information}', '\App\Http\Controllers\TaskController@updates');
 
 Route::get('/states','\App\Http\Controllers\StateController@index');
 Route::post('/states','\App\Http\Controllers\StateController@store');

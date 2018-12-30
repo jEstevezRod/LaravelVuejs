@@ -12567,7 +12567,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(19);
-module.exports = __webpack_require__(128);
+module.exports = __webpack_require__(130);
 
 
 /***/ }),
@@ -12607,10 +12607,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('feed-message-component', 
 // dashboard ( task manager )
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('task-container-component', __webpack_require__(9));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('state', __webpack_require__(103));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-task', __webpack_require__(108));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-project', __webpack_require__(113));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-state', __webpack_require__(118));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-team', __webpack_require__(123));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-task', __webpack_require__(110));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-project', __webpack_require__(115));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-state', __webpack_require__(120));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('modal-add-team', __webpack_require__(125));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('project', __webpack_require__(12));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('dashboard-home', __webpack_require__(10));
 
@@ -28252,7 +28252,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -28263,7 +28263,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -28448,7 +28447,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -28462,11 +28460,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             project_id: this.$route.params.id
         };
     },
-    mounted: function mounted() {
+    created: function created() {
         var _this = this;
 
         __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$on('updateStates', function (value) {
-            if (_this.project_id == value.project_id) {
+            if (_this.project_id == value.project) {
                 _this.states_list.push(value);
             }
         });
@@ -30994,7 +30992,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(106)
 /* template */
-var __vue_template__ = __webpack_require__(107)
+var __vue_template__ = __webpack_require__(109)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -31079,8 +31077,9 @@ exports.push([module.i, "\n.task-state[data-v-77c9ac1a] {\n    border: 1px solid
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuedraggable__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuedraggable__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuedraggable__);
+//
 //
 //
 //
@@ -31174,1380 +31173,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "column is-3-desktop is-4-tablet is-6-mobile task-state" },
-    [
-      _c("p", { staticClass: "subtitle has-text-white has-text-centered" }, [
-        _vm._v("\n        " + _vm._s(_vm.state.name) + "\n    ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "draggable",
-        {
-          staticClass: "max-height",
-          attrs: { options: { group: "state" } },
-          on: {
-            start: function($event) {
-              _vm.drag = true
-            },
-            change: function($event) {
-              _vm.modifyState($event, _vm.state.name)
-            }
-          },
-          model: {
-            value: _vm.taskToShow,
-            callback: function($$v) {
-              _vm.taskToShow = $$v
-            },
-            expression: "taskToShow"
-          }
-        },
-        _vm._l(_vm.taskToShow, function(task) {
-          return _c("div", { staticClass: "box" }, [
-            _vm._v(" " + _vm._s(task.subject))
-          ])
-        })
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-77c9ac1a", module.exports)
-  }
-}
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(109)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(111)
-/* template */
-var __vue_template__ = __webpack_require__(112)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-2fbeba6d"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/views/dashboard/ModalAddTaskComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2fbeba6d", Component.options)
-  } else {
-    hotAPI.reload("data-v-2fbeba6d", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(110);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("794d06f5", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2fbeba6d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTaskComponent.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2fbeba6d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTaskComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 111 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "ModalAddTaskComponent",
-    data: function data() {
-        return {
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            project_id: '',
-            subject: '',
-            description: '',
-            state: '',
-            states_list: [],
-            project_list: [],
-            tasks_list: [],
-            p_team: '',
-            p_name: '',
-            isSelected: false,
-            project_info: [],
-            statesForProjectSelected: []
-        };
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        this.$axios.get('/states').then(function (response) {
-            return _this.states_list = response.data.states;
-        }).catch(function (error) {
-            return console.log(error.response);
-        });
-        this.$axios.get('/projects').then(function (response) {
-            return _this.project_list = response.data.projects;
-        }).catch(function (error) {
-            return console.log(error.response);
-        });
-    },
-
-    methods: {
-        onSubmit: function onSubmit() {
-            this.$axios.post('/tasks', {
-                project_id: this.project_id,
-                subject: this.subject,
-                description: this.description,
-                state: this.state
-            }).then(this.onSuccess).catch();
-        },
-        onSuccess: function onSuccess(response) {
-            alert(response.data.message);
-            __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateTasks', response.data.task);
-        },
-        getInfoProject: function getInfoProject() {
-            var _this2 = this;
-
-            console.log('dada');
-            this.$axios.get('/projects/' + this.project_id).then(function (response) {
-                return _this2.statesForProjectSelected = response.data.states;
-            });
-        }
-    },
-    watch: {
-        'project_id': function project_id() {
-            var _this3 = this;
-
-            this.$axios.get('/projects/' + this.project_id).then(function (response) {
-                return _this3.statesForProjectSelected = response.data.states;
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      attrs: { action: "/tasks", method: "post" },
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.onSubmit($event)
-        }
-      }
-    },
-    [
-      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "section",
-          { staticClass: "modal-card-body" },
-          [
-            _c("label", { attrs: { for: "subject" } }, [
-              _vm._v("Your title is: ")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.subject,
-                  expression: "subject"
-                }
-              ],
-              staticClass: "input is-rounded",
-              attrs: {
-                type: "text",
-                name: "subject",
-                id: "subject",
-                required: ""
-              },
-              domProps: { value: _vm.subject },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.subject = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "description" } }, [
-              _vm._v("Your description is: ")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.description,
-                  expression: "description"
-                }
-              ],
-              staticClass: "input",
-              attrs: {
-                type: "text",
-                name: "description",
-                id: "description",
-                required: ""
-              },
-              domProps: { value: _vm.description },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.description = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "b-field",
-              { attrs: { label: "Pick a project" } },
-              [
-                _c(
-                  "b-select",
-                  {
-                    attrs: { placeholder: "Select a project", rounded: "" },
-                    model: {
-                      value: _vm.project_id,
-                      callback: function($$v) {
-                        _vm.project_id = $$v
-                      },
-                      expression: "project_id"
-                    }
-                  },
-                  _vm._l(_vm.project_list, function(project) {
-                    return _c("option", { domProps: { value: project.id } }, [
-                      _vm._v(_vm._s(project.p_name))
-                    ])
-                  })
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm.project_id != ""
-              ? _c(
-                  "b-field",
-                  { attrs: { label: "Choose the task state" } },
-                  [
-                    _c(
-                      "b-select",
-                      {
-                        attrs: {
-                          placeholder: "Select a character",
-                          rounded: ""
-                        },
-                        model: {
-                          value: _vm.state,
-                          callback: function($$v) {
-                            _vm.state = $$v
-                          },
-                          expression: "state"
-                        }
-                      },
-                      _vm._l(_vm.statesForProjectSelected, function(
-                        state_option
-                      ) {
-                        return _c(
-                          "option",
-                          { domProps: { value: state_option.name } },
-                          [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(state_option.name) +
-                                "\n                    "
-                            )
-                          ]
-                        )
-                      })
-                    )
-                  ],
-                  1
-                )
-              : _vm._e()
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("footer", { staticClass: "modal-card-foot" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Close")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button is-primary",
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Add task")]
-          )
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "modal-card-head" }, [
-      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
-        _vm._v("Add task")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2fbeba6d", module.exports)
-  }
-}
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(114)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(116)
-/* template */
-var __vue_template__ = __webpack_require__(117)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-29225e7f"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/views/dashboard/ModalAddProjectComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-29225e7f", Component.options)
-  } else {
-    hotAPI.reload("data-v-29225e7f", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(115);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("32f63651", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29225e7f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddProjectComponent.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29225e7f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddProjectComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 115 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 116 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "ModalAddProjectComponent",
-
-    data: function data() {
-        return {
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            p_name: '',
-            p_team: '',
-            team_list: []
-        };
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        this.$axios.get('/teams').then(function (response) {
-            return _this.team_list = response.data.teams;
-        });
-    },
-
-
-    methods: {
-        onSubmitProject: function onSubmitProject() {
-            var _this2 = this;
-
-            this.$axios.post('/projects', {
-                name: this.p_name,
-                team: this.p_team
-            }).then(function (response) {
-                alert(response.data.message);
-                __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateProjects', response.data.project);
-                _this2.$axios.post('/userInProject', {
-                    project_id: response.data.project.id
-                }).then(function (response) {
-                    return console.log(response.data);
-                });
-            }).catch();
-        }
-    }
-
-});
-
-/***/ }),
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      attrs: { action: "/tasks", method: "post" },
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.onSubmitProject($event)
-        }
-      }
-    },
-    [
-      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "section",
-          { staticClass: "modal-card-body" },
-          [
-            _c("input", {
-              attrs: { type: "hidden", name: "_token" },
-              domProps: { value: _vm.csrf }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "p_name" } }, [
-              _vm._v("Your project name: ")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.p_name,
-                  expression: "p_name"
-                }
-              ],
-              staticClass: "input",
-              attrs: { type: "text", name: "p_name", id: "p_name" },
-              domProps: { value: _vm.p_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.p_name = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "b-field",
-              { attrs: { label: "Choose a team for you project" } },
-              [
-                _c(
-                  "b-select",
-                  {
-                    attrs: { placeholder: "Select a team", rounded: "" },
-                    model: {
-                      value: _vm.p_team,
-                      callback: function($$v) {
-                        _vm.p_team = $$v
-                      },
-                      expression: "p_team"
-                    }
-                  },
-                  _vm._l(_vm.team_list, function(team_option) {
-                    return _c(
-                      "option",
-                      { domProps: { value: team_option.id } },
-                      [_vm._v(_vm._s(team_option.t_name))]
-                    )
-                  })
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("footer", { staticClass: "modal-card-foot" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Close")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button is-primary",
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Add Project")]
-          )
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "modal-card-head" }, [
-      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
-        _vm._v("Add Project")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-29225e7f", module.exports)
-  }
-}
-
-/***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(119)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(121)
-/* template */
-var __vue_template__ = __webpack_require__(122)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-29cda672"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/views/dashboard/ModalAddStateComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-29cda672", Component.options)
-  } else {
-    hotAPI.reload("data-v-29cda672", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 119 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(120);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("19bab602", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29cda672\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddStateComponent.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29cda672\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddStateComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 121 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "ModalAddStateComponent",
-    data: function data() {
-        return {
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            state_name: '',
-            state_project: '',
-            project_list: []
-
-        };
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        this.$axios.get('/projects').then(function (response) {
-            return _this.project_list = response.data.projects;
-        }).catch(function (error) {
-            return console.log(error.response);
-        });
-    },
-
-    methods: {
-        addState: function addState() {
-            this.$axios.post('/states', {
-                name: this.state_name,
-                project: this.state_project
-            }).then(this.onSuccessState);
-        },
-        onSuccessState: function onSuccessState(response) {
-            alert(response.data.message);
-            __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateStates', response.data.state);
-        }
-    }
-});
-
-/***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      attrs: { action: "/tasks", method: "post" },
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.addState($event)
-        }
-      }
-    },
-    [
-      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "section",
-          { staticClass: "modal-card-body" },
-          [
-            _c("input", {
-              attrs: { type: "hidden", name: "_token" },
-              domProps: { value: _vm.csrf }
-            }),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "name" } }, [
-              _vm._v("The name for the new state: ")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.state_name,
-                  expression: "state_name"
-                }
-              ],
-              staticClass: "input is-info",
-              attrs: { type: "text", id: "name" },
-              domProps: { value: _vm.state_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.state_name = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "b-field",
-              { attrs: { label: "Choose the project" } },
-              [
-                _c(
-                  "b-select",
-                  {
-                    attrs: { placeholder: "Select a project", rounded: "" },
-                    model: {
-                      value: _vm.state_project,
-                      callback: function($$v) {
-                        _vm.state_project = $$v
-                      },
-                      expression: "state_project"
-                    }
-                  },
-                  _vm._l(_vm.project_list, function(project) {
-                    return _c("option", { domProps: { value: project.id } }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(project.p_name) +
-                          "\n                    "
-                      )
-                    ])
-                  })
-                )
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("footer", { staticClass: "modal-card-foot" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Close")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button is-primary",
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Add State")]
-          )
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "modal-card-head" }, [
-      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
-        _vm._v("Add new state")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-29cda672", module.exports)
-  }
-}
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(124)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(126)
-/* template */
-var __vue_template__ = __webpack_require__(127)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-28544c95"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/views/dashboard/ModalAddTeamComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-28544c95", Component.options)
-  } else {
-    hotAPI.reload("data-v-28544c95", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(125);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("d522e30e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28544c95\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTeamComponent.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28544c95\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTeamComponent.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 125 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 126 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "ModalAddTeamComponent",
-    data: function data() {
-        return {
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            t_name: ''
-        };
-    },
-
-    methods: {
-        onSubmitTeam: function onSubmitTeam() {
-            var _this = this;
-
-            this.$axios.post('/teams', {
-                t_name: this.t_name
-            }).then(function (response) {
-                alert(response.data.message);
-                __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateTeam', response.data.team);
-                _this.$axios.post('/userInTeam', {
-                    team_id: response.data.team.id
-                }).then(function (response) {
-                    return console.log(response.data);
-                });
-            }).catch();
-        }
-    }
-});
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      attrs: { action: "/tasks", method: "post" },
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.onSubmitTeam($event)
-        }
-      }
-    },
-    [
-      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("section", { staticClass: "modal-card-body" }, [
-          _c("input", {
-            attrs: { type: "hidden", name: "_token" },
-            domProps: { value: _vm.csrf }
-          }),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "t_name" } }, [
-            _vm._v("Your team name: ")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.t_name,
-                expression: "t_name"
-              }
-            ],
-            staticClass: "input",
-            attrs: { type: "text", name: "t_name", id: "t_name" },
-            domProps: { value: _vm.t_name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.t_name = $event.target.value
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("footer", { staticClass: "modal-card-foot" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button",
-              attrs: { type: "button" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Close")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button is-primary",
-              attrs: { type: "submit" },
-              on: {
-                click: function($event) {
-                  _vm.$parent.close()
-                }
-              }
-            },
-            [_vm._v("Add Team")]
-          )
-        ])
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "modal-card-head" }, [
-      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
-        _vm._v("Add Team")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-28544c95", module.exports)
-  }
-}
-
-/***/ }),
-/* 128 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32967,7 +31592,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   if (true) {
-    var Sortable = __webpack_require__(134);
+    var Sortable = __webpack_require__(108);
     module.exports = buildDraggable(Sortable);
   } else if (typeof define == "function" && define.amd) {
     define(['sortablejs'], function (Sortable) {
@@ -32980,7 +31605,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 })();
 
 /***/ }),
-/* 134 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
@@ -34528,6 +33153,1400 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 	return Sortable;
 });
 
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "column is-3-desktop is-4-tablet is-6-mobile task-state" },
+    [
+      _c("p", { staticClass: "subtitle has-text-white has-text-centered" }, [
+        _vm._v("\n        " + _vm._s(_vm.state.name) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c(
+        "draggable",
+        {
+          staticClass: "max-height",
+          attrs: { options: { group: "state" } },
+          on: {
+            start: function($event) {
+              _vm.drag = true
+            },
+            change: function($event) {
+              _vm.modifyState($event, _vm.state.name)
+            }
+          },
+          model: {
+            value: _vm.taskToShow,
+            callback: function($$v) {
+              _vm.taskToShow = $$v
+            },
+            expression: "taskToShow"
+          }
+        },
+        _vm._l(_vm.taskToShow, function(task) {
+          return _c("div", { staticClass: "box" }, [
+            _vm._v(" " + _vm._s(task.subject))
+          ])
+        })
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-77c9ac1a", module.exports)
+  }
+}
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(111)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(113)
+/* template */
+var __vue_template__ = __webpack_require__(114)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2fbeba6d"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/ModalAddTaskComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2fbeba6d", Component.options)
+  } else {
+    hotAPI.reload("data-v-2fbeba6d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(112);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("794d06f5", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2fbeba6d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTaskComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2fbeba6d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTaskComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "ModalAddTaskComponent",
+    data: function data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            project_id: '',
+            subject: '',
+            description: '',
+            state: '',
+            states_list: [],
+            project_list: [],
+            tasks_list: [],
+            p_team: '',
+            p_name: '',
+            isSelected: false,
+            project_info: [],
+            statesForProjectSelected: []
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$axios.get('/states').then(function (response) {
+            return _this.states_list = response.data.states;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
+        this.$axios.get('/projects').then(function (response) {
+            return _this.project_list = response.data.projects;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
+    },
+
+    methods: {
+        onSubmit: function onSubmit() {
+            this.$axios.post('/tasks', {
+                project_id: this.project_id,
+                subject: this.subject,
+                description: this.description,
+                state: this.state
+            }).then(this.onSuccess).catch();
+        },
+        onSuccess: function onSuccess(response) {
+            this.$toast.open({
+                duration: 5000,
+                message: response.data.message,
+                position: 'is-top',
+                type: 'is-success'
+            });
+            __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateTasks', response.data.task);
+        },
+        getInfoProject: function getInfoProject() {
+            var _this2 = this;
+
+            console.log('dada');
+            this.$axios.get('/projects/' + this.project_id).then(function (response) {
+                return _this2.statesForProjectSelected = response.data.states;
+            });
+        }
+    },
+    watch: {
+        'project_id': function project_id() {
+            var _this3 = this;
+
+            this.$axios.get('/projects/' + this.project_id).then(function (response) {
+                return _this3.statesForProjectSelected = response.data.states;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { action: "/tasks", method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmit($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c("label", { attrs: { for: "subject" } }, [
+              _vm._v("Your title is: ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.subject,
+                  expression: "subject"
+                }
+              ],
+              staticClass: "input is-rounded",
+              attrs: {
+                type: "text",
+                name: "subject",
+                id: "subject",
+                required: ""
+              },
+              domProps: { value: _vm.subject },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.subject = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "description" } }, [
+              _vm._v("Your description is: ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.description,
+                  expression: "description"
+                }
+              ],
+              staticClass: "input",
+              attrs: {
+                type: "text",
+                name: "description",
+                id: "description",
+                required: ""
+              },
+              domProps: { value: _vm.description },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.description = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: "Pick a project" } },
+              [
+                _c(
+                  "b-select",
+                  {
+                    attrs: { placeholder: "Select a project", rounded: "" },
+                    model: {
+                      value: _vm.project_id,
+                      callback: function($$v) {
+                        _vm.project_id = $$v
+                      },
+                      expression: "project_id"
+                    }
+                  },
+                  _vm._l(_vm.project_list, function(project) {
+                    return _c("option", { domProps: { value: project.id } }, [
+                      _vm._v(_vm._s(project.p_name))
+                    ])
+                  })
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm.project_id != ""
+              ? _c(
+                  "b-field",
+                  { attrs: { label: "Choose the task state" } },
+                  [
+                    _c(
+                      "b-select",
+                      {
+                        attrs: {
+                          placeholder: "Select a character",
+                          rounded: ""
+                        },
+                        model: {
+                          value: _vm.state,
+                          callback: function($$v) {
+                            _vm.state = $$v
+                          },
+                          expression: "state"
+                        }
+                      },
+                      _vm._l(_vm.statesForProjectSelected, function(
+                        state_option
+                      ) {
+                        return _c(
+                          "option",
+                          { domProps: { value: state_option.name } },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(state_option.name) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      })
+                    )
+                  ],
+                  1
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Add task")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
+        _vm._v("Add task")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2fbeba6d", module.exports)
+  }
+}
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(116)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(118)
+/* template */
+var __vue_template__ = __webpack_require__(119)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-29225e7f"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/ModalAddProjectComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-29225e7f", Component.options)
+  } else {
+    hotAPI.reload("data-v-29225e7f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(117);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("32f63651", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29225e7f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddProjectComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29225e7f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddProjectComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "ModalAddProjectComponent",
+
+    data: function data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            p_name: '',
+            p_team: '',
+            team_list: []
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$axios.get('/teams').then(function (response) {
+            return _this.team_list = response.data.teams;
+        });
+    },
+
+
+    methods: {
+        onSubmitProject: function onSubmitProject() {
+            var _this2 = this;
+
+            this.$axios.post('/projects', {
+                name: this.p_name,
+                team: this.p_team
+            }).then(function (response) {
+                _this2.$toast.open({
+                    duration: 5000,
+                    message: response.data.message,
+                    position: 'is-top',
+                    type: 'is-success'
+                });
+                __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateProjects', response.data.project);
+                _this2.$axios.post('/userInProject', {
+                    project_id: response.data.project.id
+                }).then(function (response) {
+                    return console.log(response.data);
+                });
+            }).catch();
+        }
+    }
+
+});
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { action: "/tasks", method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmitProject($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "p_name" } }, [
+              _vm._v("Your project name: ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.p_name,
+                  expression: "p_name"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "text", name: "p_name", id: "p_name" },
+              domProps: { value: _vm.p_name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.p_name = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: "Choose a team for you project" } },
+              [
+                _c(
+                  "b-select",
+                  {
+                    attrs: { placeholder: "Select a team", rounded: "" },
+                    model: {
+                      value: _vm.p_team,
+                      callback: function($$v) {
+                        _vm.p_team = $$v
+                      },
+                      expression: "p_team"
+                    }
+                  },
+                  _vm._l(_vm.team_list, function(team_option) {
+                    return _c(
+                      "option",
+                      { domProps: { value: team_option.id } },
+                      [_vm._v(_vm._s(team_option.t_name))]
+                    )
+                  })
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Add Project")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
+        _vm._v("Add Project")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-29225e7f", module.exports)
+  }
+}
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(121)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(123)
+/* template */
+var __vue_template__ = __webpack_require__(124)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-29cda672"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/ModalAddStateComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-29cda672", Component.options)
+  } else {
+    hotAPI.reload("data-v-29cda672", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(122);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("19bab602", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29cda672\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddStateComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-29cda672\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddStateComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 123 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "ModalAddStateComponent",
+    data: function data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            state_name: '',
+            state_project: '',
+            project_list: []
+
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.$axios.get('/projects').then(function (response) {
+            return _this.project_list = response.data.projects;
+        }).catch(function (error) {
+            return console.log(error.response);
+        });
+    },
+
+    methods: {
+        addState: function addState() {
+            this.$axios.post('/states', {
+                name: this.state_name,
+                project: this.state_project
+            }).then(this.onSuccessState).catch(function (error) {
+                return console.log(error.response);
+            });
+        },
+        onSuccessState: function onSuccessState(response) {
+            __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateStates', response.data.state);
+            this.$toast.open({
+                duration: 5000,
+                message: response.data.message,
+                position: 'is-top',
+                type: 'is-success'
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { action: "/tasks", method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.addState($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "section",
+          { staticClass: "modal-card-body" },
+          [
+            _c("input", {
+              attrs: { type: "hidden", name: "_token" },
+              domProps: { value: _vm.csrf }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "name" } }, [
+              _vm._v("The name for the new state: ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.state_name,
+                  expression: "state_name"
+                }
+              ],
+              staticClass: "input is-info",
+              attrs: { type: "text", id: "name" },
+              domProps: { value: _vm.state_name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.state_name = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "b-field",
+              { attrs: { label: "Choose the project" } },
+              [
+                _c(
+                  "b-select",
+                  {
+                    attrs: { placeholder: "Select a project", rounded: "" },
+                    model: {
+                      value: _vm.state_project,
+                      callback: function($$v) {
+                        _vm.state_project = $$v
+                      },
+                      expression: "state_project"
+                    }
+                  },
+                  _vm._l(_vm.project_list, function(project) {
+                    return _c("option", { domProps: { value: project.id } }, [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(project.p_name) +
+                          "\n                    "
+                      )
+                    ])
+                  })
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Add State")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
+        _vm._v("Add new state")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-29cda672", module.exports)
+  }
+}
+
+/***/ }),
+/* 125 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(126)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(128)
+/* template */
+var __vue_template__ = __webpack_require__(129)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-28544c95"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/views/dashboard/ModalAddTeamComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-28544c95", Component.options)
+  } else {
+    hotAPI.reload("data-v-28544c95", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(127);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("d522e30e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28544c95\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTeamComponent.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28544c95\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ModalAddTeamComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 128 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_bus_js__ = __webpack_require__(4);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "ModalAddTeamComponent",
+    data: function data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            t_name: ''
+        };
+    },
+
+    methods: {
+        onSubmitTeam: function onSubmitTeam() {
+            var _this = this;
+
+            this.$axios.post('/teams', {
+                t_name: this.t_name
+            }).then(function (response) {
+                _this.$toast.open({
+                    duration: 5000,
+                    message: response.data.message,
+                    position: 'is-top',
+                    type: 'is-success'
+                });
+                __WEBPACK_IMPORTED_MODULE_0__event_bus_js__["a" /* EventBus */].$emit('updateTeam', response.data.team);
+                _this.$axios.post('/userInTeam', {
+                    team_id: response.data.team.id
+                }).then(function (response) {
+                    return console.log(response.data);
+                });
+            }).catch();
+        }
+    }
+});
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: { action: "/tasks", method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.onSubmitTeam($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "modal-card", staticStyle: { width: "auto" } }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("section", { staticClass: "modal-card-body" }, [
+          _c("input", {
+            attrs: { type: "hidden", name: "_token" },
+            domProps: { value: _vm.csrf }
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "t_name" } }, [
+            _vm._v("Your team name: ")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.t_name,
+                expression: "t_name"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text", name: "t_name", id: "t_name" },
+            domProps: { value: _vm.t_name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.t_name = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              attrs: { type: "button" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Close")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "button is-primary",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  _vm.$parent.close()
+                }
+              }
+            },
+            [_vm._v("Add Team")]
+          )
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title has-text-centered" }, [
+        _vm._v("Add Team")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-28544c95", module.exports)
+  }
+}
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

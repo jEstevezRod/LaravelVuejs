@@ -1,5 +1,4 @@
 <template>
-
     <div class="my-custom" :key="$route.params.id">
         <state :project_id="project_id" :tasks_list="tasks_list" v-for="state in states_list" :state="state"></state>
     </div>
@@ -18,9 +17,9 @@
                 project_id: this.$route.params.id
             }
         },
-        mounted() {
+        created() {
             EventBus.$on('updateStates', value => {
-                if (this.project_id == value.project_id) {
+                if (this.project_id == value.project) {
                     this.states_list.push(value)
                 }
             })
@@ -45,7 +44,6 @@
 </script>
 
 <style scoped>
-
     .my-custom {
         display: flex;
         flex-flow: row wrap;

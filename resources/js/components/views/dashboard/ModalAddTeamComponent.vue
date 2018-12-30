@@ -38,7 +38,12 @@
                     t_name: this.t_name,
                 })
                     .then(response => {
-                        alert(response.data.message)
+                        this.$toast.open({
+                            duration: 5000,
+                            message: response.data.message,
+                            position: 'is-top',
+                            type: 'is-success'
+                        });
                         EventBus.$emit('updateTeam', response.data.team);
                         this.$axios.post('/userInTeam', {
                             team_id: response.data.team.id

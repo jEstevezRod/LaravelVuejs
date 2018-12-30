@@ -53,7 +53,12 @@
                     team: this.p_team,
                 })
                     .then(response => {
-                        alert(response.data.message)
+                        this.$toast.open({
+                            duration: 5000,
+                            message: response.data.message,
+                            position: 'is-top',
+                            type: 'is-success'
+                        });
                         EventBus.$emit('updateProjects', response.data.project);
                         this.$axios.post('/userInProject', {
                             project_id: response.data.project.id

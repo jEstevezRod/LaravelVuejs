@@ -1,7 +1,7 @@
 <template>
 
-    <div class="my-custom" :key="$route.params.id" >
-        <state :tasks_list="tasks_list" v-for="state in states_list" :state="state" ></state>
+    <div class="my-custom" :key="$route.params.id">
+        <state :project_id="project_id" :tasks_list="tasks_list" v-for="state in states_list" :state="state"></state>
     </div>
 </template>
 
@@ -18,15 +18,24 @@
                 project_id: this.$route.params.id
             }
         },
-        created() {
-            EventBus.$on('updateStates', value => this.states_list.push(value))
-            EventBus.$on('updateTasks', value => this.tasks_list.push(value))
+        mounted() {
+            EventBus.$on('updateStates', value => {
+                if (this.project_id == value.project_id) {
+                    this.states_list.push(value)
+                }
+            })
+            EventBus.$on('updateTasks', value => {
+                if (this.project_id == value.project_id) {
+                    this.tasks_list.push(value)
+                }
+            })
+
             this.$axios.get('/projects/' + this.$route.params.id)
                 .then(response => {
-                    console.log(response.data)
-                    this.tasks_list = response.data.tasks
-                    console.log(response.data.tasks)
-                    this.states_list = response.data.states
+                    if (this.project_id == response.data.project_id) {
+                        this.tasks_list = response.data.tasks
+                        this.states_list = response.data.states
+                    }
                 })
 
         },

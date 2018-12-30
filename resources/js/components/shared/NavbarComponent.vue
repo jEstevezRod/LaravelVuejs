@@ -31,8 +31,8 @@
                                         </ul>
                                         <span class="navbar-item">
                                         <p></p>
-                                        <a class="button is-white is-outlined" href="/logout">
-                                            <span @click.prevent="logout">Logout</span>
+                                        <a class="button is-white is-outlined" @click.prevent="logout">
+                                            <span >Logout</span>
                                         </a>
                             </span>
                                     </div>
@@ -50,6 +50,12 @@
 <script>
     export default {
         name: "NavbarComponent",
+        methods: {
+            logout (){
+                this.$axios.get('logout')
+                window.location.href = '/'
+            }
+        }
     }
 </script>
 

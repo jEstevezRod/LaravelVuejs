@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/web#/home';
+    protected $redirectTo = '/web#/';
 
 
     /**

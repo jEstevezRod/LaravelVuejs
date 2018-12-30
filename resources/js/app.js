@@ -30,7 +30,7 @@ Vue.component('modal-add-team', require('./components/views/dashboard/ModalAddTe
 Vue.component('project', require('./components/views/dashboard/ProjectsComponent'));
 Vue.component('dashboard-home', require('./components/views/dashboard/DashboardHomeComponent'))
 
-const app = new Vue({
+new Vue({
     el: '#app',
     router
 });

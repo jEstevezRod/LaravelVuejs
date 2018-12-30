@@ -79,7 +79,7 @@ class ProjectController extends Controller
 
         $tasks = DB::table('tasks')
             ->join('projects', 'tasks.project_id', '=', 'projects.id')
-            ->select('tasks.subject')
+            ->select('tasks.subject', 'tasks.state', 'tasks.description', 'tasks.id')
             ->where('projects.id', '=', $value)
             ->get();
 
@@ -89,7 +89,7 @@ class ProjectController extends Controller
             ->where('projects.id', '=', $value)
             ->get();
 
-        return ['message' => $value, 'tasks' => $tasks, 'states' => $states];
+        return ['message' => $value, 'tasks' => $tasks, 'states' => $states, 'project_id' => $value];
     }
 
 

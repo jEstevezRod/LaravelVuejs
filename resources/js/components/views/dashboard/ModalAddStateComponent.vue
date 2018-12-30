@@ -9,8 +9,15 @@
                 <input type="hidden" name="_token" :value="csrf">
                 <label for="name">The name for the new state: </label>
                 <input type="text" class="input is-info" id="name" v-model="state_name">
-                <label for="project">Do you want to add in any project ?</label>
-                <input type="text" class="input" id="project" v-model="state_project">
+
+
+                <b-field label="Choose the project">
+                    <b-select placeholder="Select a project" v-model="state_project" rounded>
+                        <option v-for="project in project_list" v-bind:value="project.id">
+                            {{project.p_name}}
+                        </option>
+                    </b-select>
+                </b-field>
 
             </section>
             <footer class="modal-card-foot">
@@ -32,9 +39,15 @@
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 state_name: '',
                 state_project: '',
+                project_list: []
 
             }
 
+        },
+        mounted() {
+            this.$axios.get('/projects')
+                .then(response => this.project_list = response.data.projects)
+                .catch(error => console.log(error.response))
         },
         methods: {
             addState() {

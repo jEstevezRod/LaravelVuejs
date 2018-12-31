@@ -92,5 +92,8 @@ class ProjectController extends Controller
         return ['message' => $value, 'tasks' => $tasks, 'states' => $states, 'project_id' => $value];
     }
 
+    public function projectsWithTasks(){
+
+    }
 
 }

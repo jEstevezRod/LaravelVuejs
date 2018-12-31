@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ProjectUser;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,12 +39,25 @@ class ProjectUserController extends Controller
      */
     public function store(Request $request)
     {
-        $userInProject = new ProjectUser();
-        $userInProject->user_id = Auth::user()->getId();
-        $userInProject->project_id = $request->project_id;
-        $userInProject->save();
+        if (empty($request->email)) {
+            $userInProject = new ProjectUser();
+            $userInProject->user_id = Auth::user()->getId();
+            $userInProject->project_id = $request->project_id;
+            $userInProject->save();
 
-        return ['message' => 'New entry stored correctly', 'userInProject' => $userInProject];
+            return ['message' => 'New entry stored correctly', 'userInProject' => $userInProject];
+        } elseif (!empty($request->email)) {
+
+            $id = User::where('email', $request->email)->first()->id;
+
+            $userInProject = new ProjectUser();
+            $userInProject->user_id = $id;
+            $userInProject->project_id = $request->project_id;
+            $userInProject->save();
+
+            return ['message' => 'New entry stored correctly', 'userInProject' => $userInProject];
+        }
+
     }
 
     /**

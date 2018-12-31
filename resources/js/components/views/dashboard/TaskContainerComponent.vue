@@ -20,7 +20,6 @@
                             <p class="subtitle">TEAMS:</p>
                             <ul>
                                 <li v-for="team in teams_list">{{team.t_name}}</li>
-
                             </ul>
                         </div>
                         <div class="projects-wrapper">
@@ -78,6 +77,39 @@
                             </section>
                         </div>
                         <!--end modals-->
+                        <section>
+
+                            <b-collapse class="card">
+                                <div slot="trigger" slot-scope="props" class="card-header">
+                                    <p class="card-header-title">
+                                        Add member to my project
+                                    </p>
+                                    <a class="card-header-icon">
+                                        <b-icon
+                                                :icon="props.open ? 'menu-down' : 'menu-up'">
+                                        </b-icon>
+                                    </a>
+                                </div>
+                                <div class="card-content">
+                                    <div class="content">
+                                    <label for="email"> User email </label>
+                                    <input type="text" class="input" id="email" v-model="emailToCheck">
+
+                                    <b-field label="Pick a project">
+                                        <b-select placeholder="Select a project" v-model="project_id_add" rounded>
+                                            <option v-for="project in project_list" v-bind:value="project.id">{{project.p_name}}</option>
+                                        </b-select>
+                                    </b-field>
+                                    </div>
+
+                                </div>
+                                <footer class="card-footer">
+                                    <a class="card-footer-item" @click.prevent="addToProject">Add</a>
+
+                                </footer>
+                            </b-collapse>
+
+                        </section>
 
                     </div>
                 </div>
@@ -106,6 +138,8 @@
                 state_name: '',
                 p_team: '',
                 p_name: '',
+                project_id_add: '',
+                emailToCheck: '',
                 isComponentModalActive: false,
                 isComponentModalActive2: false,
                 isComponentModalActive3: false,
@@ -152,6 +186,14 @@
             EventBus.$on('updateProjects', value => this.project_list.push(value))
             EventBus.$on('updateTeam', value => this.teams_list.push(value))
         },
+        methods : {
+            addToProject() {
+                this.$axios.post('/userInProject', {
+                    email: this.emailToCheck,
+                    project_id : this.project_id_add
+                }).then( response => console.log(response.data.message))
+            }
+        }
 
 
     }

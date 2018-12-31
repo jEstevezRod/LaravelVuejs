@@ -4,14 +4,9 @@
             {{state.name}}
         </p>
         <hr>
-
         <draggable class="max-height" v-model="taskToShow" :options="{group:'state'}" @start="drag=true"
                    @change="modifyState($event,state.name)">
-
-
-            <div class="box" v-for="task in taskToShow"> {{task.subject }}</div>
-            <!--<p slot="header" class="subtitle has-text-white has-text-centered">{{state.name}} </p>-->
-            <!--<hr slot="header">-->
+            <task class="m-4" v-for="task in taskToShow" :task="task"></task>
         </draggable>
     </div>
 </template>
@@ -89,6 +84,9 @@
     .max-height {
         height: 100%;
         min-height: 50px;
+    }
+    .m-4 {
+        margin: 12px 0;
     }
 
 </style>

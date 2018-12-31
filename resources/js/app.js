@@ -1,10 +1,23 @@
-import Vue from 'vue'
+
+
 import Buefy from 'buefy'
 import router from './routes'
 import axios from 'axios'
 
 window.Vue = require('vue');
+window._ = require('lodash');
+
 Vue.use(Buefy, axios);
+
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 Vue.prototype.$axios = axios;
 
@@ -29,8 +42,10 @@ Vue.component('modal-add-state', require('./components/views/dashboard/ModalAddS
 Vue.component('modal-add-team', require('./components/views/dashboard/ModalAddTeamComponent'));
 Vue.component('project', require('./components/views/dashboard/ProjectsComponent'));
 Vue.component('dashboard-home', require('./components/views/dashboard/DashboardHomeComponent'))
+Vue.component('task', require('./components/views/dashboard/TaskComponent'))
+Vue.component('line-chart' , require('./components/views/dashboard/ChartDashboardComponent'))
 
-new Vue({
+const app = new Vue({
     el: '#app',
     router
 });
